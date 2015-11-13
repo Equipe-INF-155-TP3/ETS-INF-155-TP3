@@ -60,6 +60,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="donnees_route.h" />
+    <ClInclude Include="graphiques_lib.h" />
+    <ClInclude Include="winBGIm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="donnees_route.cpp" />
+    <ClCompile Include="graphiques_lib.cpp" />
+    <ClCompile Include="WINBGIM.Cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

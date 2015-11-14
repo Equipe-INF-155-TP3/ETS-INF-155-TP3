@@ -1,0 +1,45 @@
+﻿La génération a démarré 2015-11-14 02:04:38.
+     1>Projet "C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt donnees_route.cpp graphiques_lib.cpp t_auto.cpp WINBGIM.Cpp
+         WINBGIM.Cpp
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.h(361): warning C4273: 'getch' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la définition précédente de 'getch'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.h(362): warning C4273: 'kbhit' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : voir la définition précédente de 'kbhit'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.cpp(610): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : voir la déclaration de 'sprintf'
+         t_auto.cpp
+         graphiques_lib.cpp
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.h(361): warning C4273: 'getch' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la définition précédente de 'getch'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.h(362): warning C4273: 'kbhit' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : voir la définition précédente de 'kbhit'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(118): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(119): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(134): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(163): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : voir la déclaration de 'sprintf'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(206): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(254): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la déclaration de 'getch'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(292): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : voir la déclaration de 'kbhit'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(293): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la déclaration de 'getch'
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\graphiques_lib.cpp(320): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la déclaration de 'getch'
+         donnees_route.cpp
+         Génération de code en cours...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\Debug\TP3 V0.01.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\Debug\TP3 V0.01.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\Debug\TP3 V0.01.lib" /MACHINE:X86 Debug\donnees_route.obj
+         Debug\graphiques_lib.obj
+         Debug\t_auto.obj
+         Debug\WINBGIM.obj
+            Création de la bibliothèque C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\Debug\TP3 V0.01.lib et de l'objet C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\Debug\TP3 V0.01.exp
+     1>LINK : fatal error LNK1561: le point d'entrée doit être défini
+     1>Génération du projet "C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+
+ÉCHEC de la build.
+
+Temps écoulé 00:00:07.39

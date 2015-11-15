@@ -4,7 +4,7 @@
 #define _T_AUTO_
 
 #include "graphiques_lib.h"
-
+#include <math.h>
 
 	  //********************###############################***********************/
 	 //*********************#  Inclure les bibliothèques  #**********************/
@@ -39,19 +39,14 @@
 	/******************************************************************************
 	nom: init_auto
 	description: Cette fonction va créer et initialiser la navette avec les données 
-				de départ.  La longueur et la largeur de la navette seront 
-				initialisées avec les constantes (LONG, LARG). La position de départ 
-				ainsi que l’angle de départ de la navette sont copiés dans les 
-				champs « .position » et « .dir » respectivement.  Les vecteurs 
-				d’accélération et de vitesse sont initialement mis à zéro de même 
-				que le booléen « .attente ».
+				de départ.
 	paramètres:
 	- t_pt2d: "pos_depart" 
 	- double: "dir_depart" 
 	retour: 
 	- t_auto:
 	//****************************************************************************/
-	t_auto init_auto(t_pt2d pos_depart, double dir_depart);
+	t_auto init_auto(t_pt2d, double);
 
 
 	/******************************************************************************
@@ -68,8 +63,7 @@
 	- t_pt2d *: "infD"
 	retour: aucun
 	//****************************************************************************/
-	void obt_pos_auto(const t_auto *navette, t_pt2d *pos_ref, 
-	                t_pt2d *supG, t_pt2d *supD, t_pt2d *infG, t_pt2d *infD);
+	void obt_pos_auto(const t_auto *, t_pt2d *, t_pt2d *, t_pt2d *, t_pt2d *, t_pt2d *);
 
 
 	/******************************************************************************

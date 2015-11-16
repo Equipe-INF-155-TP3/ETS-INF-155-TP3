@@ -74,7 +74,6 @@ void obt_pos_auto(const t_auto *navette, t_pt2d *pos_ref,
 	*infD = navette->infD;
 }
 
-
 void changer_acc_auto(t_auto *navette, t_pt2d dest){
 	int dX, dY, distance;
 	//On calcule la distance entre la voiture et sa destination.
@@ -98,6 +97,29 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
 		else
 			navette->acc.Y *= 0.1;
 	}
+}
 
+void deplacer_auto(t_auto *navette){
+	int vitesse;//Serviras à stoker la vitesse.
+
+	//On accumule la vitesse avec l'accelereration.
+	navette->vel.X += navette->acc.X;
+	navette->vel.Y += navette->acc.Y;
+	vitesse == sqrtl(puissance(navette->vel.X,2)+puissance(navette->vel.Y,2));
+	if (vitesse > MAXVEL){//On normalise la vitesse.
+		navette->vel.X *= MAXVEL/vitesse;
+		navette->vel.Y *= MAXVEL/vitesse;
+	}
+
+	//On accumule la position avec la vitesse.
+	navette->position.X += navette->vel.X;
+	navette->position.Y += navette->vel.Y;
+
+	//On recalcule la direction.
+	//La fonction atan2() corrige automatiquement les signes
+	navette->dir = atan2(navette->vel.Y,navette->vel.X);
+
+	//On calcule les nouvelles positions des coins.
+	calcule_les_coins(navette);
 }
 

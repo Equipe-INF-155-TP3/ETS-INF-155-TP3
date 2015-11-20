@@ -61,28 +61,25 @@ static void dessiner_ligne(t_pt2d ptA, t_pt2d ptB)
 // ****************************************************************************
 // Parametres : route = le contenu complet de la route à afficher.
 ******************************************************************************/
-//void dessiner_route(const t_route *route)     
-void dessiner_route()
+void dessiner_route(const t_route *route)     
+
 { 
+	int i;
 	int xmax, ymax;
-	xmax = getmaxx();    //on récupère les coordonnées maximales
-	ymax = getmaxy();
+
+	//xmax = route->dimx;    //on récupère les coordonnées maximales X et Y
+	//ymax = route->dimy;
 
 	setcolor(WHITE); //On veut des lignes blanches
 
-	//AEROPORT
+	for (i = 0; i <= route->nb_lignes; i++)
+	{
+		line(route->liste_lignes[i].ptA.X, /* On fait les lignes en partant d'un point A (X,Y) a un point B	(X,Y)								*/
+			 route->liste_lignes[i].ptA.Y,  
+			 route->liste_lignes[i].ptB.X,
+			 route->liste_lignes[i].ptB.Y);
+	}
 
-	//HAUNTED_HOUSE
-	line(0, 0, xmax, 0);		//Pattern Carré
-	line(xmax, 0, xmax, ymax);
-	line(xmax, ymax, 0, ymax);
-	line(0, ymax, 0, 0);
-
-	line((xmax / 5), 0, (xmax / 5), (ymax/1.5));
-
-
-	//LELOUVRE
-	return;
 }
 
 
@@ -96,9 +93,15 @@ void dessiner_route()
 ******************************************************************************/
 void dessiner_chemin(const t_chemin *chemin)     
 { 
+	int i;
 
-	//***** FONCTION À ÉCRIRE ****
+	setcolor(RED); //On veut des points rouge
 
+	for (i = 0; i <= chemin->nb_pts; i++);
+	{
+		circle(chemin->liste_pts[i].X, 		//Cercle a partir avec coordonnée (X,Y) avec rayon de 1
+			   chemin->liste_pts[i].Y, 1);
+	}
 }
 
 

@@ -18,7 +18,7 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 
 	fichier = fopen(nomF, MODE_OUVERTURE);
 	if (fichier == NULL){
-		return 0
+		return 0;
 	}
 	fscanf(fichier, "%i %i\n", route->dimx, route->dimy);
 	fscanf(fichier, "%i\n", route->nb_lignes);
@@ -41,7 +41,9 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 		fscanf(fichier, "%lf %lf\n", chemin->liste_pts[i].X, chemin->liste_pts[i].Y);
 	}
 
-	return 1
+	fscanf(fichier, "%i", nb_obs);
+
+	return 1;
 }
 
 
@@ -54,13 +56,8 @@ double dist(t_pt2d p1, t_pt2d p2){
 	
 	return sqrt(dx*dx+dy*dy);  // Application du théorème de Pythagore
 }
-<<<<<<< HEAD
-=======
 
 void detruire_chemin(t_route *route, t_chemin *chemin){
 	free(chemin->liste_pts);
 	free(route->liste_lignes);
 }
-
-
->>>>>>> origin/master

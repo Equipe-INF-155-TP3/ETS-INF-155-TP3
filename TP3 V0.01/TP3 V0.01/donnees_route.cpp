@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "donnees_route.h"
-#include <math.h>  // Utilisation de la fonction PI
 
 
 #define LONG_MAX_NOM_F 15

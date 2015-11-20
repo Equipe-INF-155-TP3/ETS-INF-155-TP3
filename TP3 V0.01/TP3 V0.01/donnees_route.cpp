@@ -48,3 +48,13 @@ double dist(t_pt2d p1, t_pt2d p2){
 	
 	return sqrt(dx*dx+dy*dy);  // Application du théorème de Pythagore
 }
+<<<<<<< HEAD
+=======
+
+void detruire_chemin(t_route *route, t_chemin *chemin){
+	free(chemin->liste_pts);
+	free(route->liste_lignes);
+}
+
+
+>>>>>>> origin/master

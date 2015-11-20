@@ -1,0 +1,42 @@
+﻿La génération a démarré 2015-11-20 10:52:30.
+     1>Projet "C:\Users\Regis\Documents\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt donnees_route.cpp t_auto.cpp WINBGIM.Cpp
+         WINBGIM.Cpp
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.h(361): warning C4273: 'getch' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\conio.h(131) : voir la définition précédente de 'getch'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.h(362): warning C4273: 'kbhit' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\conio.h(133) : voir la définition précédente de 'kbhit'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\winbgim.cpp(610): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : voir la déclaration de 'sprintf'
+         t_auto.cpp
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(80): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(81): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(82): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(82): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(108): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(108): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
+         donnees_route.cpp
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : voir la déclaration de 'fopen'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(19): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : voir la déclaration de 'fscanf'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(20): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : voir la déclaration de 'fscanf'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(27): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : voir la déclaration de 'fscanf'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(30): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : voir la déclaration de 'fscanf'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(33): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : voir la déclaration de 'fscanf'
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(36): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(230) : voir la déclaration de 'fscanf'
+         Génération de code en cours...
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(39): error C4716: 'lire_fichier' : doit retourner une valeur
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\donnees_route.cpp(30): warning C4700: variable locale 'dir_dep_deg' non initialisée utilisée
+     1>c:\users\regis\documents\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(109): warning C4700: variable locale 'vitesse' non initialisée utilisée
+     1>Génération du projet "C:\Users\Regis\Documents\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+
+ÉCHEC de la build.
+
+Temps écoulé 00:00:02.44

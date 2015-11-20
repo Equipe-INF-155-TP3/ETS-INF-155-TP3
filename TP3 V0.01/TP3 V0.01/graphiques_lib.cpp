@@ -62,9 +62,23 @@ static void dessiner_ligne(t_pt2d ptA, t_pt2d ptB)
 // Parametres : route = le contenu complet de la route à afficher.
 ******************************************************************************/
 void dessiner_route(const t_route *route)     
-{ 
 
-	//***** FONCTION À ÉCRIRE ****
+{ 
+	int i;
+	int xmax, ymax;
+
+	//xmax = route->dimx;    //on récupère les coordonnées maximales X et Y
+	//ymax = route->dimy;
+
+	setcolor(WHITE); //On veut des lignes blanches
+
+	for (i = 0; i <= route->nb_lignes; i++)
+	{
+		line(route->liste_lignes[i].ptA.X, /* On fait les lignes en partant d'un point A (X,Y) a un point B	(X,Y)								*/
+			 route->liste_lignes[i].ptA.Y,  
+			 route->liste_lignes[i].ptB.X,
+			 route->liste_lignes[i].ptB.Y);
+	}
 
 }
 
@@ -79,9 +93,15 @@ void dessiner_route(const t_route *route)
 ******************************************************************************/
 void dessiner_chemin(const t_chemin *chemin)     
 { 
+	int i;
 
-	//***** FONCTION À ÉCRIRE ****
+	setcolor(RED); //On veut des points rouge
 
+	for (i = 0; i <= chemin->nb_pts; i++);
+	{
+		circle(chemin->liste_pts[i].X, 		//Cercle a partir avec coordonnée (X,Y) avec rayon de 1
+			   chemin->liste_pts[i].Y, 1);
+	}
 }
 
 
@@ -251,7 +271,7 @@ char * saisie_nomF()
 
    /* tant que l'on a pas reçu la touche <ENTER> lire les lettres de la chaîne */
 	do {
-		ch = getch();
+		ch = _getch();
 		switch (ch) {
 			case BKSPACE :   //enlever une lettre de la chaîne
 					if (l) { 
@@ -289,8 +309,8 @@ char * saisie_nomF()
 /*****************************************************************************/
 int saisie_touche(char *ch)
 { 
-  if (kbhit()) {            //si on a détecté une touche-clavier..
-    *ch = toupper(getch());   //la touche sera retournée en MAJUSCULES
+  if (_kbhit()) {            //si on a détecté une touche-clavier..
+    *ch = toupper(_getch());   //la touche sera retournée en MAJUSCULES
 	return 1;
   }
 
@@ -317,7 +337,7 @@ void delai(int ms)
 // Parametres : aucun
 /*****************************************************************************/
 void pause_ecran()
-{  getch();  }
+{  _getch();  }
 
 
 /******************************************************************************

@@ -1,0 +1,17 @@
+﻿La génération a démarré 2015-11-16 01:21:43.
+     1>Projet "C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" sur le nœud 2 (ClCompile cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt t_auto.cpp
+         t_auto.cpp
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(80): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(81): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(82): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(82): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(108): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(108): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
+     1>c:\users\philippe\desktop\éts\inf-155\ets-inf-155-tp3\tp3 v0.01\tp3 v0.01\t_auto.cpp(109): warning C4700: variable locale 'vitesse' non initialisée utilisée
+     1>Génération du projet "C:\Users\Philippe\Desktop\ÉTS\INF-155\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" terminée (ClCompile cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:01.21

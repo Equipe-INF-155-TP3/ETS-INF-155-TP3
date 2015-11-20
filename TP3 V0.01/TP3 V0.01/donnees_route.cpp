@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "donnees_route.h"
 #include <math.h>
+#include <assert.h>
 
 
 #define LONG_MAX_NOM_F 15
@@ -16,10 +17,13 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	double dir_dep_deg;
 
 	fichier = fopen(nomF, MODE_OUVERTURE);
+	if (fichier == NULL){
+		return 0
+	}
 	fscanf(fichier, "%i %i\n", route->dimx, route->dimy);
 	fscanf(fichier, "%i\n", route->nb_lignes);
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
-
+	assert(route->liste_lignes);
 	for (i = 0; i < (route->nb_lignes); i++){
 		fscanf(fichier, "%lf %lf lf% % lf\n",	route->liste_lignes[i].ptA.X,
 												route->liste_lignes[i].ptA.Y,
@@ -32,10 +36,12 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 
 	fscanf(fichier, "%i\n", chemin->nb_pts);
 	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); //erreur ...
+	assert(chemin->liste_pts);
 	for (i = 0; i < (chemin->nb_pts); i++){
 		fscanf(fichier, "%lf %lf\n", chemin->liste_pts[i].X, chemin->liste_pts[i].Y);
 	}
 
+	return 1
 }
 
 

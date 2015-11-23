@@ -1,9 +1,0 @@
-﻿La génération a démarré 2015-11-20 11:47:02.
-     1>Projet "C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" sur le nœud 2 (ClCompile cible(s)).
-       Le fichier projet contient ToolsVersion="12.0". Cet ensemble d'outils est inconnu ou manquant. Vous pouvez résoudre cela en installant le .NET Framework approprié pour cet ensemble d'outils. Projet traité comme si ToolsVersion="4.0".
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.Cpp.Platform.targets(44,5): error MSB8020: The builds tools for v120 (Platform Toolset = 'v120') cannot be found. To build using the v120 build tools, either click the Project menu or right-click the solution, and then select "Update VC++ Projects...". Install v120 to build using the v120 build tools.
-     1>Génération du projet "C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3 V0.01\TP3 V0.01\TP3 V0.01.vcxproj" terminée (ClCompile cible(s)) -- ÉCHEC.
-
-ÉCHEC de la build.
-
-Temps écoulé 00:00:00.01

@@ -1,13 +1,54 @@
-﻿La génération a démarré 2015-11-23 13:28:59.
+﻿La génération a démarré 2015-11-23 15:07:11.
      1>Projet "C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\TP3\TP3.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt t_auto.cpp t_obstacles.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt donnees_route.cpp graphiques_lib.cpp principal.cpp t_auto.cpp t_obstacles.cpp WINBGIM.Cpp
+         WINBGIM.Cpp
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\winbgim.h(361): warning C4273: 'getch' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la définition précédente de 'getch'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\winbgim.h(362): warning C4273: 'kbhit' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : voir la définition précédente de 'kbhit'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\winbgim.cpp(610): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : voir la déclaration de 'sprintf'
          t_obstacles.cpp
-         Génération de code en cours...
-         Compilation en cours...
          t_auto.cpp
      1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\t_auto.cpp(89): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
+         principal.cpp
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\principal.cpp(24): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la déclaration de 'getch'
+         graphiques_lib.cpp
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\winbgim.h(361): warning C4273: 'getch' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : voir la définition précédente de 'getch'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\winbgim.h(362): warning C4273: 'kbhit' : liaison DLL incohérente
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : voir la définition précédente de 'kbhit'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(80): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(68): warning C4101: 'xmax' : variable locale non référencée
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(68): warning C4101: 'ymax' : variable locale non référencée
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(103): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(138): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(139): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(154): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(183): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : voir la déclaration de 'sprintf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\graphiques_lib.cpp(226): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+         donnees_route.cpp
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(19): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : voir la déclaration de 'fopen'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(23): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(24): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(31): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(34): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(37): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(41): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(44): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : voir la déclaration de 'fscanf'
          Génération de code en cours...
+     1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\donnees_route.cpp(34): warning C4700: variable locale 'dir_dep_deg' non initialisée utilisée
      1>c:\users\philippe\desktop\ets-inf-155-tp3\tp3\tp3\t_auto.cpp(91): warning C4700: variable locale 'vitesse' non initialisée utilisée
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.lib" /MACHINE:X86 Debug\donnees_route.obj
@@ -16,10 +57,10 @@
          Debug\t_auto.obj
          Debug\t_obstacles.obj
          Debug\WINBGIM.obj
-            CrÚation de la bibliothÞque C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.lib et de l'objet C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.exp
+            Création de la bibliothèque C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.lib et de l'objet C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.exp
          TP3.vcxproj -> C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\Debug\TP3.exe
      1>Génération du projet "C:\Users\Philippe\Desktop\ETS-INF-155-TP3\TP3\TP3\TP3.vcxproj" terminée (Build cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:02.55
+Temps écoulé 00:00:08.26

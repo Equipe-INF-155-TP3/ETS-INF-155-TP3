@@ -66,12 +66,14 @@
     <ClCompile Include="graphiques_lib.cpp" />
     <ClCompile Include="principal.cpp" />
     <ClCompile Include="t_auto.cpp" />
+    <ClCompile Include="t_obstacles.cpp" />
     <ClCompile Include="WINBGIM.Cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="donnees_route.h" />
     <ClInclude Include="graphiques_lib.h" />
     <ClInclude Include="t_auto.h" />
+    <ClInclude Include="t_obstacles.h" />
     <ClInclude Include="winBGIm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

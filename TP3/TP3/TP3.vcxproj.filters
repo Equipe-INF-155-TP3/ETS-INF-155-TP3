@@ -30,6 +30,9 @@
     <ClCompile Include="WINBGIM.Cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="t_obstacles.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="donnees_route.h">
@@ -42,6 +45,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="winBGIm.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="t_obstacles.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,7 +19,6 @@
 	#define LONG    70
 	#define LARG    40
 	#define MAXVEL	10 
-	// La vitesse maximale (MAXVEL) ne semble pas être spécifié dans le devis.
 
 
 

@@ -3,3 +3,12 @@
 *.suo
 *.sdf
 *.opensdf
+*.exe
+*.exp
+*.ilk
+*.pdb
+*.tlog
+*.log
+*.obj
+*.lastbuildstate
+*.idb

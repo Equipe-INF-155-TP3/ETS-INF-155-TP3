@@ -1,0 +1,2 @@
+On peut maintenant faire des commits sans avoir à fermer visual studio ou word.
+La fonction de gitignore fonctionne maintenant correctement.

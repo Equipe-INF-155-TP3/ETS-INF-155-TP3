@@ -1,9 +1,15 @@
 #include "t_auto.h"
+
+
+  //*********************###############################**********************/
+ //**********************# Fonction: calcule_les_coins #*********************/
+//***********************###############################********************/
+//Permet de mettre à jours la position des coins de la voiture.
 static void calcule_les_coins(t_auto *voiture){
 	int demilargeur;
 	double sindir, cosdir;
 
-	//On précalcule les valeurs complexes pour sauver du proccessus.
+	//On précalcule les valeurs complexes pour sauver de la puissance de calcul.
 	demilargeur = voiture->largeur/2;
 	sindir = sin(voiture->dir);
 	cosdir = cos(voiture->dir);
@@ -24,6 +30,11 @@ static void calcule_les_coins(t_auto *voiture){
 	voiture->infD.Y = voiture->supD.Y - (cosdir * voiture->longueur);
 }
 
+
+
+  //**************************#######################*************************/
+ //***************************# Fonction: init_auto #************************/
+//****************************#######################***********************/
 t_auto init_auto(t_pt2d pos_depart, double dir_depart){
 	t_auto voiture; //On crée la nouvelle voiture
 
@@ -43,6 +54,10 @@ t_auto init_auto(t_pt2d pos_depart, double dir_depart){
 	return voiture;
 }
 
+
+  //************************##########################************************/
+ //*************************# Fonction: obt_pos_auto #***********************/
+//**************************##########################**********************/
 void obt_pos_auto(const t_auto *navette, t_pt2d *pos_ref, 
 	                t_pt2d *supG, t_pt2d *supD, t_pt2d *infG, t_pt2d *infD){
 
@@ -54,6 +69,10 @@ void obt_pos_auto(const t_auto *navette, t_pt2d *pos_ref,
 	*infD = navette->infD;
 }
 
+
+  //**********************##############################**********************/
+ //***********************# Fonction: changer_acc_auto #*********************/
+//************************##############################********************/
 void changer_acc_auto(t_auto *navette, t_pt2d dest){
 	double distance;
 	t_pt2d delta;
@@ -79,6 +98,10 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
 	}
 }
 
+
+  //************************###########################***********************/
+ //*************************# Fonction: deplacer_auto #**********************/
+//**************************###########################*********************/
 void deplacer_auto(t_auto *navette){
 	int vitesse;//Serviras à stoker la vitesse.
 

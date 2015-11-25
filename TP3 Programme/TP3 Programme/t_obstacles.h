@@ -35,7 +35,7 @@
 
 	/******************************************************************************
 	nom: init_auto
-	description: Crée et initialise la navette avec les données de départ.
+	description: 
 	paramètres:
 	- t_pt2d: "pos_depart" 
 	- double: "dir_depart" 
@@ -43,5 +43,38 @@
 	- t_auto:
 	//****************************************************************************/
 	t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy);
+
+
+	/******************************************************************************
+	nom: detruire_obs
+	description: 
+	paramètres:
+	- t_liste_obs *: "obstacles"
+	retour: aucun
+	//****************************************************************************/
+	void detruire_obs(t_liste_obs *obstacles);
+
+
+	/******************************************************************************
+	nom: afficher_obs
+	description: 
+	paramètres:
+	- t_liste_obs *: "obstacles"
+	retour: aucun
+	//****************************************************************************/
+	void afficher_obs(const t_liste_obs *obstacles);
+
+
+	/******************************************************************************
+	nom: deplacer_obs
+	description: 
+	paramètres:
+	- t_liste_obs *: "obstacles"
+	- int:"dimx"
+	- int:"dimy"
+	retour: aucun
+	//****************************************************************************/
+	void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy);
+
 
 #endif

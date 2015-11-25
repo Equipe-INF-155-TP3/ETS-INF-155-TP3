@@ -1,5 +1,4 @@
 #include "t_auto.h"
-#define PI 3.14159
 static void calcule_les_coins(t_auto *voiture){
 	int demilargeur;
 	double sindir, cosdir;

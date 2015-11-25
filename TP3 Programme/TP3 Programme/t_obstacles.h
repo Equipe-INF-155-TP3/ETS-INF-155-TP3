@@ -59,7 +59,7 @@
 	nom: afficher_obs
 	description: 
 	paramètres:
-	- t_liste_obs *: "obstacles"
+	- const t_liste_obs *: "obstacles"
 	retour: aucun
 	//****************************************************************************/
 	void afficher_obs(const t_liste_obs *obstacles);
@@ -70,8 +70,8 @@
 	description: 
 	paramètres:
 	- t_liste_obs *: "obstacles"
-	- int:"dimx"
-	- int:"dimy"
+	- int: "dimx"
+	- int: "dimy"
 	retour: aucun
 	//****************************************************************************/
 	void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy);

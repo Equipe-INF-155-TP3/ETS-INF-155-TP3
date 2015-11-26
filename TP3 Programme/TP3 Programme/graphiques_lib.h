@@ -5,6 +5,7 @@
 // **** CE FICHIER SERA FOURNI AUX ÉLEVES ****
 /******************************************************************************/
 #include "donnees_route.h"
+#include <math.h>
 
 #if !defined (_GRLIB_)
 
@@ -14,10 +15,12 @@
   LES CONSTANTES-COULEURS
 **************************/
 
-#define  NOIR     0       //un espace libre (noir)
-#define  LIGNE    15      //une ligne (blanc)
-#define  POINT    4       //un point-cible (rouge)
-#define  AUTO     1       //une auto (bleu)
+#define  MAX_COULEUR	15		//indice de couleur le plus élevé.
+#define  NOIR			0       //un espace libre (noir)
+#define  LIGNE			15      //une ligne (blanc)
+#define  POINT			4       //un point-cible (rouge)
+#define  AUTO			1       //une auto (bleu)
+
 #define DEMI_PI atan(1.0)
 #define PI asin(1.0)
 

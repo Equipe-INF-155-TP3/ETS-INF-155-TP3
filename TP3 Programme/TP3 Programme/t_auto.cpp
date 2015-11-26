@@ -31,7 +31,6 @@ static void calcule_les_coins(t_auto *voiture){
 }
 
 
-
   //**************************#######################*************************/
  //***************************# Fonction: init_auto #************************/
 //****************************#######################***********************/
@@ -123,8 +122,6 @@ void deplacer_auto(t_auto *navette){
 	//La fonction atan2() corrige automatiquement les signes
 	//On ajoute PI pour compencer la direction décalé de la voiture.
 	navette->dir = atan2(navette->vel.Y,navette->vel.X)+PI;
-
-
 
 	//On calcule les nouvelles positions des coins.
 	calcule_les_coins(navette);

@@ -9,7 +9,7 @@
 //**************************###########################*********************/
 static int detecter_auto(const t_obstacle *obs){
 	double vel, dx, dy;
-	vel = sqrt(dist(obs->velocite,));
+	//vel = sqrt(dist(obs->velocite,));
 
 
 }

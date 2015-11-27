@@ -6,7 +6,7 @@
 
 
 #define LONG_MAX_NOM_F 15
-#define MODE_OUVERTURE "rt"
+#define MODE_OUVERTURE "r"
 #define RAD_A_DEG (3.14159/180)
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -16,17 +16,43 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	FILE * fichier;
 	int i;
 	double dir_dep_deg;
+	
 
 	fichier = fopen(nomF, MODE_OUVERTURE);
 	if (fichier == NULL){
 		printf("erreur d'ouverture de fichier");
 		return 0;
 	}
+	fscanf(fichier, "%d %d\n", &route->dimx, &route->dimy);
+	
+	fscanf(fichier, "%d\n", &route->nb_lignes);
+	
+
 	fscanf(fichier, "%i %i\n", &route->dimx, &route->dimy);
 	fscanf(fichier, "%i\n", &route->nb_lignes);
+
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
 	assert(route->liste_lignes);
+
 	for (i = 0; i < (route->nb_lignes); i++){
+
+		fscanf(fichier, "%d", &(route->liste_lignes[i].ptA.X));
+		fscanf(fichier, "%d", &(route->liste_lignes[i].ptA.Y));
+		fscanf(fichier, "%d", &(route->liste_lignes[i].ptB.X));
+		fscanf(fichier,"%d\n",&(route->liste_lignes[i].ptB.Y));
+	}
+
+	fscanf(fichier, "%d %d %lf \n", &depart->X, &depart->Y, &dir_dep_deg);
+	*dir_dep = dir_dep_deg*RAD_A_DEG; // Conversion des radians en degrés
+
+	fscanf(fichier, "%d\n", &chemin->nb_pts);
+	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); //erreur ...
+	assert(chemin->liste_pts);
+	for (i = 0; i < (chemin->nb_pts); i++){
+		fscanf(fichier, "%d %d\n", &chemin->liste_pts[i].X, &chemin->liste_pts[i].Y);
+	}
+
+	fscanf(fichier, "%d", &nb_obs);
 		fscanf(fichier, "%lf %lf lf% % lf\n",	&route->liste_lignes[i].ptA.X,
 												&route->liste_lignes[i].ptA.Y,
 												&route->liste_lignes[i].ptB.X,
@@ -44,7 +70,6 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	}
 
 	fscanf(fichier, "%i", &nb_obs);
-
 	return 1;
 }
 
@@ -65,6 +90,8 @@ void detruire_chemin(t_route *route, t_chemin *chemin){
 }
 
 
+<<<<<<< HEAD
+=======
 void obt_dim_route(const t_route *route, int *dimx, int *dimy){
 	*dimx = route->dimx;
 	*dimy = route->dimy;
@@ -94,3 +121,4 @@ int obt_nb_pts(const t_chemin *chemin){
 	
 	return chemin->nb_pts;
 }
+>>>>>>> origin/master

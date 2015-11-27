@@ -67,17 +67,21 @@ void dessiner_route(const t_route *route)
 	int i;
 	int xmax, ymax;
 
-	//xmax = route->dimx;    //on récupère les coordonnées maximales X et Y
-	//ymax = route->dimy;
+
+	xmax = route->dimx;    //on récupère les coordonnées maximales X et Y
+	ymax = route->dimy;
 
 	setcolor(WHITE); //On veut des lignes blanches
 
-	for (i = 0; i <= route->nb_lignes; i++)
+	for (i = 0; i < route->nb_lignes; i++)
 	{
 		line(route->liste_lignes[i].ptA.X, /* On fait les lignes en partant d'un point A (X,Y) a un point B	(X,Y)								*/
 			 route->liste_lignes[i].ptA.Y,  
 			 route->liste_lignes[i].ptB.X,
 			 route->liste_lignes[i].ptB.Y);
+
+		printf("\n%i \n%i \n%i \n%i\n", route->liste_lignes[i].ptA.X, route->liste_lignes[i].ptA.Y, route->liste_lignes[i].ptB.X, route->liste_lignes[i].ptB.Y);
+		getch();
 	}
 
 }

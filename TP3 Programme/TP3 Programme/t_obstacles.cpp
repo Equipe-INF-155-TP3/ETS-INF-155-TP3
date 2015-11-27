@@ -1,12 +1,26 @@
 #include "t_obstacles.h"
 
 
+
+
+
+  //************************###########################***********************/
+ //*************************# Fonction: detecter_auto #**********************/
+//**************************###########################*********************/
+static int detecter_auto(const t_obstacle *obs){
+	double vel, dx, dy;
+	vel = sqrt(dist(obs->velocite,));
+
+
+}
+
+
+
+
   //***********************#############################**********************/
  //************************# Fonction: creer_liste_obs #*********************/
 //*************************#############################********************/
 t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
-
-
 
 	t_liste_obs liste;
 	int i;
@@ -54,10 +68,33 @@ void detruire_obs(t_liste_obs *obstacles){
   //************************##########################************************/
  //*************************# Fonction: afficher_obs #***********************/
 //**************************##########################**********************/
-void afficher_obs(const t_liste_obs *obstacles){}
+void afficher_obs(const t_liste_obs *obstacles){
+	int i;
+
+	for(i=0; i<obstacles->nombre; i++){
+		dessiner_rond(obstacles->obstacles[i].position
+					 ,obstacles->obstacles[i].couleur);
+	}
+}
 
 
   //************************##########################************************/
  //*************************# Fonction: deplacer_obs #***********************/
 //**************************##########################**********************/
-void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy){}
+void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy){
+	int i;
+	t_obstacle *obs;
+	for(i=0; i<obstacles->nombre; i++){
+		obs = &obstacles->obstacles[i];
+
+		//On met à jours la position.
+		obs->position.X += obs->velocite.X;
+		obs->position.Y += obs->velocite.Y;
+
+		//On vérifie les bordures.
+		if (obs->position.X < DIST_MIN || obs->position.X > dimx-DIST_MIN)
+			obs->velocite.X *= -1;
+		if (obs->position.Y < DIST_MIN || obs->position.Y > dimy-DIST_MIN)
+			obs->velocite.Y *= -1;
+	}
+}

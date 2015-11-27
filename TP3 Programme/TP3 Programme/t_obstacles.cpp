@@ -14,7 +14,7 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
 	t_obstacle *obs;
 	liste.obstacles	= (t_obstacle *)malloc(sizeof(t_obstacle)*nb_obs);
 	if (liste.obstacles == NULL){//si l'alocation s'est bien déroulé.
-		liste.nombre = -1;
+		liste.nombre = 0;
 	} else {
 		liste.nombre = nb_obs;
 		srand(time(NULL));
@@ -45,11 +45,9 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
  //*************************# Fonction: detruire_obs #***********************/
 //**************************##########################**********************/
 void detruire_obs(t_liste_obs *obstacles){
-
-
-
-
-
+	free(obstacles->obstacles);
+	obstacles->obstacles = NULL;
+	obstacles->nombre = 0;
 }
 
 

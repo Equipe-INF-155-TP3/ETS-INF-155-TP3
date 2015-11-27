@@ -8,17 +8,28 @@
 
 int main()
 {
-	int nomF;
+	char nomF;
+	t_route route;
+	t_chemin chemin;
+	t_pt2d depart;
+	double dir_depart;
+	int nb_obs;
 
 	initialiser_graphique();
 
-	saisie_nomF();
-	
+	/******************************************************************************/
+	// Fonction pour saisir un nom de fichier en mode graphique.
+	// Entrées : aucun
+	// Sortie  : pointeur vers la chaîne de caractère saisie.
+	/******************************************************************************/
+	nomF = *saisie_nomF();
+
+	lire_fichier("haunted_house.txt",&route,&depart,&dir_depart, &chemin,&nb_obs);
 
 	
-
 	effacer_ecran();
-	dessiner_route();
+
+	dessiner_route(&route);
 	//dessiner_chemin();
 
 	pause_ecran();

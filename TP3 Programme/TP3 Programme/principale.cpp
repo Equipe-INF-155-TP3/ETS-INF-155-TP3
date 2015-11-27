@@ -18,7 +18,7 @@ int main()
 	
 
 	effacer_ecran();
-	dessiner_route();
+	//dessiner_route();
 	//dessiner_chemin();
 
 	pause_ecran();

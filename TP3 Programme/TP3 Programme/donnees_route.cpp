@@ -23,27 +23,27 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 		return 0;
 	}
 	fscanf(fichier, "%i %i\n", &route->dimx, &route->dimy);
-	fscanf(fichier, "%i\n", route->nb_lignes);
+	fscanf(fichier, "%i\n", &route->nb_lignes);
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
 	assert(route->liste_lignes);
 	for (i = 0; i < (route->nb_lignes); i++){
-		fscanf(fichier, "%lf %lf lf% % lf\n",	route->liste_lignes[i].ptA.X,
-												route->liste_lignes[i].ptA.Y,
-												route->liste_lignes[i].ptB.X,
-												route->liste_lignes[i].ptB.Y);
+		fscanf(fichier, "%lf %lf lf% % lf\n",	&route->liste_lignes[i].ptA.X,
+												&route->liste_lignes[i].ptA.Y,
+												&route->liste_lignes[i].ptB.X,
+												&route->liste_lignes[i].ptB.Y);
 	}
 
-	fscanf(fichier, "%i %i %lf \n", depart->X, depart->Y, dir_dep_deg);
+	fscanf(fichier, "%i %i %lf \n", &depart->X, &depart->Y, &dir_dep_deg);
 	*dir_dep = dir_dep_deg*RAD_A_DEG; // Conversion des radians en degrés
 
-	fscanf(fichier, "%i\n", chemin->nb_pts);
+	fscanf(fichier, "%i\n", &chemin->nb_pts);
 	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); //erreur ...
 	assert(chemin->liste_pts);
 	for (i = 0; i < (chemin->nb_pts); i++){
-		fscanf(fichier, "%lf %lf\n", chemin->liste_pts[i].X, chemin->liste_pts[i].Y);
+		fscanf(fichier, "%lf %lf\n", &chemin->liste_pts[i].X, &chemin->liste_pts[i].Y);
 	}
 
-	fscanf(fichier, "%i", nb_obs);
+	fscanf(fichier, "%i", &nb_obs);
 
 	return 1;
 }
@@ -66,27 +66,31 @@ void detruire_chemin(t_route *route, t_chemin *chemin){
 
 
 void obt_dim_route(const t_route *route, int *dimx, int *dimy){
-
-
-}
+	*dimx = route->dimx;
+	*dimy = route->dimy;
+	}
 
 t_ligne obt_ligne(const t_route *route, int pos){
-
-
+	if (pos < route->nb_lignes)
+		return route->liste_lignes[pos];
+	else
+		printf("erreur, position de ligne trop grande");
+		
 }
 
 int obt_nb_lignes(const t_route *route) {
-
-
+	return route->nb_lignes;
 }
 
 t_pt2d obt_pt(const t_chemin *chemin, int pos){
+	if (pos < chemin->nb_pts)
+		return chemin->liste_pts[pos];
 
-
+	else
+		printf("erreur, position de point trop grande");
 }
 
 int obt_nb_pts(const t_chemin *chemin){
-
-
-
+	
+	return chemin->nb_pts;
 }

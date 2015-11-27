@@ -71,7 +71,7 @@
   <ItemGroup>
     <ClCompile Include="donnees_route.cpp" />
     <ClCompile Include="graphiques_lib.cpp" />
-    <ClCompile Include="principal.cpp" />
+    <ClCompile Include="principale.cpp" />
     <ClCompile Include="t_auto.cpp" />
     <ClCompile Include="t_obstacles.cpp" />
     <ClCompile Include="WINBGIM.Cpp" />

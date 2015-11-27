@@ -20,7 +20,7 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	if (fichier == NULL){
 		return 0;
 	}
-	fscanf(fichier, "%i %i\n", route->dimx, route->dimy);
+	fscanf(fichier, "%i %i\n", &route->dimx, &route->dimy);
 	fscanf(fichier, "%i\n", route->nb_lignes);
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
 	assert(route->liste_lignes);

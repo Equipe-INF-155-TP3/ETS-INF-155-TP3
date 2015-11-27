@@ -48,7 +48,7 @@ int main(void){
 	}
 
 	*/
-	lire_fichier("airport_parking.txt", &route, &depart, &dir_dep, &chemin, &nb_obj);
+	lire_fichier("aeroport_parking.txt", &route, &depart, &dir_dep, &chemin, &nb_obj);
 	initialiser_graphique();
 	system("pause");
 	effacer_ecran();

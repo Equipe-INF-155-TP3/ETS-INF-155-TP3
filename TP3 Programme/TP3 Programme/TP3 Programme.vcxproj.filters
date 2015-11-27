@@ -38,9 +38,6 @@
     <ClCompile Include="graphiques_lib.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="principal.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="t_auto.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -48,6 +45,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="WINBGIM.Cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="principale.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

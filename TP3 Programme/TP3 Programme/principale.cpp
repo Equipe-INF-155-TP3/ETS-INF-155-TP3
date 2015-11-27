@@ -14,33 +14,21 @@ int main()
 	t_pt2d depart;
 	double dir_depart;
 	int nb_obs;
+	int valide;
 
 	initialiser_graphique();
-
 	nomF = saisie_nomF();
 
-	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
+	valide = lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs);
+	if (valide)
 	{
 		effacer_ecran();
-
 		dessiner_route(&route);
-		//dessiner_chemin();
-	int nomF;
-
-	initialiser_graphique();
-
-	saisie_nomF();
-	
-
-	effacer_ecran();
-	//dessiner_route();
-	//dessiner_chemin();
-
-	pause_ecran();
-
-		pause_ecran();
+		dessiner_chemin(&chemin);
+		//pause_ecran();
 	}
 
-	system("pause");
+	fermer_graphique();
+   	system("pause");
 	return EXIT_SUCCESS;
 }

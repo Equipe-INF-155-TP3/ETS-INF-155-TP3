@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "donnees_route.h"
-#include <math.h>
+#include <math.h>  // Utilisation de sqrt
 #include <assert.h>
 
 
 #define LONG_MAX_NOM_F 15
 #define MODE_OUVERTURE "rt"
 #define RAD_A_DEG (3.14159/180)
+#define _CRT_SECURE_NO_WARNINGS
 
 
 int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_chemin *chemin, int *nb_obs){
@@ -18,6 +19,7 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 
 	fichier = fopen(nomF, MODE_OUVERTURE);
 	if (fichier == NULL){
+		printf("erreur d'ouverture de fichier");
 		return 0;
 	}
 	fscanf(fichier, "%i %i\n", &route->dimx, &route->dimy);
@@ -60,4 +62,31 @@ double dist(t_pt2d p1, t_pt2d p2){
 void detruire_chemin(t_route *route, t_chemin *chemin){
 	free(chemin->liste_pts);
 	free(route->liste_lignes);
+}
+
+
+void obt_dim_route(const t_route *route, int *dimx, int *dimy){
+
+
+}
+
+t_ligne obt_ligne(const t_route *route, int pos){
+
+
+}
+
+int obt_nb_lignes(const t_route *route) {
+
+
+}
+
+t_pt2d obt_pt(const t_chemin *chemin, int pos){
+
+
+}
+
+int obt_nb_pts(const t_chemin *chemin){
+
+
+
 }

@@ -67,8 +67,8 @@ void dessiner_route(const t_route *route)
 	int i;
 	int xmax, ymax;
 
-	//xmax = route->dimx;   
-	//ymax = route->dimy;
+	xmax = route->dimx;   
+	ymax = route->dimy;
 
 	setcolor(LIGNE); //On veut des lignes blanches
 
@@ -79,13 +79,6 @@ void dessiner_route(const t_route *route)
 			 route->liste_lignes[i].ptB.X,
 			 route->liste_lignes[i].ptB.Y);
 
-		printf("\n%d", route->liste_lignes[i].ptA.X);
-		printf("\n%d", route->liste_lignes[i].ptA.Y);
-		printf("\n%d", route->liste_lignes[i].ptB.X);
-		printf("\n%d\n", route->liste_lignes[i].ptB.Y);
-
-
-		getch();
 	}
 
 }
@@ -103,12 +96,14 @@ void dessiner_chemin(const t_chemin *chemin)
 { 
 	int i;
 
-	setcolor(RED); //On veut des points rouge
+	setcolor(POINT);					//On veut des points rouge
+	setfillstyle(SOLID_FILL, POINT);	//Couleur du remplissage
 
-	for (i = 0; i < chemin->nb_pts; i++);
+	for (i = 0; i < chemin->nb_pts; i++)
 	{
-		circle(chemin->liste_pts[i].X, 		//Cercle a partir avec coordonnée (X,Y) avec rayon de 1
-			   chemin->liste_pts[i].Y, 1);
+		circle(chemin->liste_pts[i].X, 		//Cercle a partir avec coordonnée (X,Y) avec rayon de 5 (CONSTANTE ?)
+			   chemin->liste_pts[i].Y, 5); 
+		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); //Remplissage du cercle
 	}
 }
 

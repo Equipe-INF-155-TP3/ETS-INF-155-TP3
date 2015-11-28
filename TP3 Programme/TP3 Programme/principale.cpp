@@ -17,18 +17,21 @@ int main()
 	int valide;
 
 	initialiser_graphique();
+
 	nomF = saisie_nomF();
 
-	valide = lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs);
-	if (valide)
+	
+	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 	{
 		effacer_ecran();
 		dessiner_route(&route);
 		dessiner_chemin(&chemin);
-		//pause_ecran();
+		pause_ecran();
 	}
 
 	fermer_graphique();
+
+
    	system("pause");
 	return EXIT_SUCCESS;
 }

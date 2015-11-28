@@ -14,6 +14,7 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	FILE * fichier;
 	int i;
 	double dir_dep_deg;
+	
 
 	fichier = fopen(nomF, MODE_OUVERTURE);
 	if (fichier == NULL)
@@ -24,23 +25,29 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
 
 	for (i = 0; i < (route->nb_lignes); i++){
-		/* fscanf(fichier,"%d %d %d %d\n",		&(route->liste_lignes[i].ptA.X),
+
+		/* fscanf(fichier,"%d %d %d %d\n",	&(route->liste_lignes[i].ptA.X),
 											&(route->liste_lignes[i].ptA.Y),
 											&(route->liste_lignes[i].ptB.X),
 											&(route->liste_lignes[i].ptB.Y)); */
-		fscanf(fichier, "%d", &route->liste_lignes[i].ptA.X);
-		fscanf(fichier, "%d", &route->liste_lignes[i].ptA.Y);
-		fscanf(fichier, "%d", &route->liste_lignes[i].ptB.X);
-		fscanf(fichier, "%d\n", &route->liste_lignes[i].ptB.Y);
+
+		fscanf(fichier, "%lf",	&route->liste_lignes[i].ptA.X);
+		fscanf(fichier, "%lf",	&route->liste_lignes[i].ptA.Y);
+		fscanf(fichier, "%lf",	&route->liste_lignes[i].ptB.X);
+		fscanf(fichier, "%lf\n", &route->liste_lignes[i].ptB.Y);
 	}
 
-	fscanf(fichier, "%d %d %lf\n", &depart->X, &depart->Y, &dir_dep_deg);
+	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);
 	*dir_dep = dir_dep_deg*RAD_A_DEG; // Conversion des radians en degrés
 
 	fscanf(fichier,"%d\n", &chemin->nb_pts);
+
 	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); //erreur ...
-	for (i = 0; i < (chemin->nb_pts); i++){
-		fscanf(fichier, "%d %d\n", &chemin->liste_pts[i].X, &chemin->liste_pts[i].Y);
+
+	for (i = 0; i < (chemin->nb_pts); i++)
+	{
+		fscanf(fichier, "%lf",   &chemin->liste_pts[i].X);
+		fscanf(fichier, "%lf\n", &chemin->liste_pts[i].Y);
 	}
 	return 1;
 }

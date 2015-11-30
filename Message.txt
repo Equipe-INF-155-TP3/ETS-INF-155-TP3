@@ -1,2 +1,11 @@
-On peut maintenant faire des commits sans avoir à fermer visual studio ou word.
-La fonction de gitignore fonctionne maintenant correctement.
+
+Important, lire au complet svp.
+
+Pour corriger les problèmes de compatibilité entre nos versions de visual studio,
+jais du faire en sorte que github ignore tout les fichier de fonctionnement de visual studio.
+
+Sa veut dire que seulement les fichier .cpp et .h devrait être "sync".
+
+Cependant, pour y arriver, les fichiers de projet on dut être supprimés.
+Pour régler cela, il suffit de créer un nouveau projet du même nom "TP3 Programme" au même endroit qu'avant "ETS-INF-155-TP3".
+Github ne devrais pas s'en rendre compte.

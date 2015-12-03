@@ -6,7 +6,7 @@
 
 	Auteurs:
 		- Philippe La Madeleine -LAMP21099204
-		- //////////////  écriver votre nom et votre code permanent ici  //////////////
+		- Clarence Dupuis		-DUPC24069502
 		- //////////////  écriver votre nom et votre code permanent ici  //////////////
 
 	Cours: INF-155
@@ -14,7 +14,7 @@
 	Groupe: 2
 
 	Objectif:	Programer une voiture qui suivras un parcour prédéfini a 
-				travest un environement simulé en évitant les colision avec
+				travers un environement simulé en évitant les collision avec
 				des obstacles dynamiques.
 				
 
@@ -76,6 +76,8 @@
 #include "donnees_route.h"
 #include "graphiques_lib.h"
 #include "t_auto.h"
+
+#define _CRT_SECURE_NO_WARNINGS
 
   //***************########################################*******************/
  //****************#  Définition des fonctions statiques  #******************/

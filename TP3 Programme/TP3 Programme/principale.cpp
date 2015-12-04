@@ -80,12 +80,7 @@
 #include "t_auto.h"
 #include "t_obstacles.h"
 
-<<<<<<< HEAD
-
 #define RAFRAICHISSEMENT 50	//ms
-=======
-#define _CRT_SECURE_NO_WARNINGS
->>>>>>> origin/master
 #define PREMIER_POINT 0
 
 

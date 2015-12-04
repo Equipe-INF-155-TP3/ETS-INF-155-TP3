@@ -606,7 +606,7 @@ char* getmodename(int mode)
 {
     static char mode_str[32];
 
-    sprintf(mode_str, "%d x %d %s", window_width, window_height,
+    sprintf_s(mode_str, "%d x %d %s", window_width, window_height,
 	    mode < 2 ? "EGA" : "VGA");
 
     return mode_str;

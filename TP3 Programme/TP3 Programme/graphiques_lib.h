@@ -10,6 +10,7 @@
 #if !defined (_GRLIB_)
 
 #define _GRLIB_ 1
+#define _CRT_SECURE_NO_WARNINGS
 
 /**************************
   LES CONSTANTES-COULEURS

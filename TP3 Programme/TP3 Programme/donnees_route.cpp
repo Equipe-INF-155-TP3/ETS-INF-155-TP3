@@ -7,7 +7,8 @@
 #define LONG_MAX_NOM_F 15
 #define MODE_OUVERTURE "rt"
 #define RAD_A_DEG (3.14159/180)
-#define _CRT_SECURE_NO_WARNINGS
+
+
 
 int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_chemin *chemin, int *nb_obs){
 
@@ -67,5 +68,15 @@ void detruire_chemin(t_route *route, t_chemin *chemin){
 	free(chemin->liste_pts);
 	free(route->liste_lignes);
 }
+
+
+t_pt2d obt_pt(const t_chemin *chemin, int pos){
+	if (pos >= chemin->nb_pts)
+		printf("Erreur dans la fonction obt_pt. le point [%d] n'existe pas.", pos);
+	else
+		return chemin->liste_pts[pos];
+}
+
+
 
 

@@ -183,7 +183,7 @@ void afficher_pos(t_pt2d cible, int i, int dimx)
    py = 20 + (i * texth);           //calcul de la position verticale
 
    /* On converti les coordonnées en string avant d'afficher */
-   sprintf(buff, "%2i:(%4d, %4d )", i+1, (int)cible.X, (int)cible.Y);
+   sprintf_s(buff, "%2i:(%4d, %4d )", i+1, (int)cible.X, (int)cible.Y);
 
    outtextxy(dimx + 10, py, buff);   //à droite de la route
 }

@@ -36,6 +36,7 @@
 #define __GRAPHICS_H__
 #define far
 #define huge
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stddef.h>
 #include <conio.h>

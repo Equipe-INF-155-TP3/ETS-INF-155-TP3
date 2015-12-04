@@ -93,7 +93,7 @@
 static char choisir_menu( const char *choix_possible){
 	char choix = 0, i;
 	do {
-		choix=toupper(getch()); // Percoit la première touche appuillé en majuscule.
+		choix=toupper(_getch()); // Percoit la première touche appuillé en majuscule.
 		// Compare la touche appuillé avec tout les élément de la chaine de
 		// caractère "choix_possible".
 		for(i=0;choix_possible[i];i++){

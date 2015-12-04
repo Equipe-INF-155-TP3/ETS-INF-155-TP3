@@ -10,6 +10,8 @@
 #if !defined (__DONNEES_ROUTE__)
 
 #define __DONNEES_ROUTE__ 1
+#define _CRT_SECURE_NO_WARNINGS
+
 
 /******************************************************************************/
 /*                       Déclaration des types                                */

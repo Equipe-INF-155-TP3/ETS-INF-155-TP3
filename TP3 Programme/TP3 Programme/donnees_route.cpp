@@ -7,7 +7,8 @@
 #define LONG_MAX_NOM_F 15
 #define MODE_OUVERTURE "rt"
 #define RAD_A_DEG (3.14159/180)
-#define _CRT_SECURE_NO_WARNINGS
+
+
 
 int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_chemin *chemin, int *nb_obs){
 

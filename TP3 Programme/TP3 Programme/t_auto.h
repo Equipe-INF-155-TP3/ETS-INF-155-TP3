@@ -2,6 +2,7 @@
 
 #if !defined (_T_AUTO_)
 #define _T_AUTO_
+#define _CRT_SECURE_NO_WARNINGS
 
 
 	  //********************###############################*******************/

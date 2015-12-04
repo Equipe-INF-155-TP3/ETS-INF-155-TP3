@@ -2,7 +2,7 @@
 
 #if !defined (_T_OBSTACLES_)
 #define _T_OBSTACLES_
-
+#define _CRT_SECURE_NO_WARNINGS
 
 	  //********************###############################***********************/
 	 //*********************#  Inclure les bibliothèques  #**********************/

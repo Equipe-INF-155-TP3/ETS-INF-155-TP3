@@ -4,6 +4,7 @@
 // Cette librairie contient les fonctions d'affichage en mode graphique.
 // **** CE FICHIER SERA FOURNI AUX ÉLEVES ****
 /******************************************************************************/
+
 #include "donnees_route.h"
 #include <math.h>
 

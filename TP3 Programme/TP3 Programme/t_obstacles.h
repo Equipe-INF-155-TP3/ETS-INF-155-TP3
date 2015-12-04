@@ -19,6 +19,11 @@
 	#define DIST_MIN 5
 	#define VEL_MIN 0.1
 	#define VEL_MAX 3
+	#define CHAMP_VISION 30
+	#define SURPRISE_FORT -1
+	#define SURPRISE_FAIBLE 0.5
+	#define COLLISION_MUR -1
+	#define SURPRISE 2
 
 
 	  //*************************#######################**************************/

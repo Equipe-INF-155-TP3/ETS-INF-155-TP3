@@ -178,9 +178,11 @@ static void mode_D(){
 			if (toupper(getch()) == 'Q')
 				return;
 			distance = dist(pos_ref, cible);
-			if (2*distance < LARG && distance > dist_precedente)
+			if (2*distance < LARG && distance > dist_precedente){
 				cible = obt_pt( &chemin, PREMIER_POINT);
-
+				distance = dist(pos_ref, cible);
+				afficher_pos(cible,point_rendu,1);
+			}
 
 
 			delai(RAFRAICHISSEMENT);
@@ -188,6 +190,8 @@ static void mode_D(){
 			dist_precedente = distance;
 		}while (1);//////////////////////////////////////////////////////////////////////////
 	
+
+
 		pause_ecran();
 		
 	}
@@ -195,13 +199,7 @@ static void mode_D(){
 /*
   
 
-    Si (on est à moins d'une demi-largeur de la cible ET 
-        qu'on s'éloigne de la cible), 
-	cible = Récupérer le prochain point s’il en reste, sinon terminé = VRAI 
-distance = calculer la nouvelle distance entre l’auto et la cible
-      Afficher ce point à la droite de la route avec « afficher_pos() »
-    Fin Si
-    Transférer la distance dans dist_precedente
+
   Fin boucle
 Fin Si
 Fermer le mode graphique

@@ -77,6 +77,11 @@ t_pt2d obt_pt(const t_chemin *chemin, int pos){
 		return chemin->liste_pts[pos];
 }
 
+void obt_dim_route(const t_route *route, int *dimx, int *dimy){
+	*dimx = route->dimx;
+	*dimy = route->dimy;
+}
+
 
 
 

@@ -72,10 +72,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+
 #include "winBGIm.h"    
 #include "donnees_route.h"
 #include "graphiques_lib.h"
 #include "t_auto.h"
+
+#define PREMIER_POINT 0
+
 
   //***************########################################*******************/
  //****************#  Définition des fonctions statiques  #******************/
@@ -85,7 +90,7 @@
   //********************#############################************************/
  //*********************#  Fonction: choix du menu  #***********************/
 //**********************#############################**********************/
-static char choix_menu( const char *choix_possible){
+static char choisir_menu( const char *choix_possible){
 	char choix = 0, i;
 	do {
 		choix=toupper(getch()); // Percoit la première touche appuillé en majuscule.
@@ -98,7 +103,100 @@ static char choix_menu( const char *choix_possible){
 	} while (choix);//Recommence tant que la touche ne correspond pas.
 	return choix;
 }
+//Permet de tester le mode graphique
+static void mode_N(){
 
+	char *nomF;
+	t_route route;
+	t_chemin chemin;
+	t_pt2d depart;
+	double dir_depart;
+	int nb_obs;
+
+	initialiser_graphique();
+
+	nomF = saisie_nomF();
+
+	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
+	{
+		effacer_ecran();
+		dessiner_route(&route);
+		dessiner_chemin(&chemin);
+		pause_ecran();
+	}
+}
+
+
+static void mode_D(){
+
+	initialiser_graphique();
+	char *nomF = saisie_nomF();
+	t_pt2d cible;
+	t_auto voiture;
+
+	t_route route;
+	t_chemin chemin;
+	t_pt2d depart;
+	double dir_depart;
+	int nb_obs;
+	t_pt2d pos_ref, supG, supD, infG, infD;
+	double dist_precedente;
+
+
+	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
+		effacer_ecran();
+
+		//Créer la voiture.
+		voiture = init_auto(depart, dir_depart);
+		dessiner_route(&route);
+
+		//obtenir et Afficher la première cible.
+		cible = obt_pt( &chemin, PREMIER_POINT);
+
+		afficher_pos(cible,PREMIER_POINT,1);
+		
+		//Dessiner la voiture.
+		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+		dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+
+		dist_precedente = dist(pos_ref, cible);
+
+	/*	while (1){//////////////////////////////////////////////////////////////////
+
+
+
+
+		}*///////////////////////////////////////////////////////////////////////////
+	
+		pause_ecran();
+		
+	}
+
+/*
+  
+  dist_precedente = distance entre l’auto et la cible		
+  Tant que (on n’a pas terminé le chemin) :
+    Changer l’accélération de l’auto pour aller vers la cible
+    Effacer et réafficher la route (pour effacer l’auto en même temps)
+    Déplacer l'auto
+    Afficher l'auto 
+    Faire une pause de 50 msec.
+    Si on a pesé sur ESC on quitte la boucle immédiatement 
+    distance = distance entre l’auto et la cible
+    Si (on est à moins d'une demi-largeur de la cible ET 
+        qu'on s'éloigne de la cible), 
+	cible = Récupérer le prochain point s’il en reste, sinon terminé = VRAI 
+distance = calculer la nouvelle distance entre l’auto et la cible
+      Afficher ce point à la droite de la route avec « afficher_pos() »
+    Fin Si
+    Transférer la distance dans dist_precedente
+  Fin boucle
+Fin Si
+Fermer le mode graphique
+
+*/
+
+}
 
 
   //******************##################################**********************/
@@ -114,18 +212,24 @@ int main()
 	int nb_obs;
 	int valide;
 
-	initialiser_graphique();
 
-	nomF = saisie_nomF();
 
-	
-	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
-	{
-		effacer_ecran();
-		dessiner_route(&route);
-		dessiner_chemin(&chemin);
-		pause_ecran();
+
+	char choix_menu = 'D';
+	//choix_menu = choisir_menu("NDQ")
+	switch (choix_menu){
+		case 'N':
+			mode_N();
+		break;
+		case 'D':
+			mode_D();
+		break;
+		case 'Q':
+			//detruire_route();
+			//////////////////////////
+		break;
 	}
+
 
 	fermer_graphique();
 

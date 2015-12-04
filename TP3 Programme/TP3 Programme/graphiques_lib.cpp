@@ -172,7 +172,7 @@ void afficher_pos(t_pt2d cible, int i, int dimx)
    char buff[MAXL];
 
    setcolor(WHITE);
-   /* Si c'est le premier point, on afficher d'abord le titre */
+   /* Si c'est le premier point, on affiche d'abord le titre */
    if (i==0){
      settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
      outtextxy(dimx + 8, 0, "CIBLES :");

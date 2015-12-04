@@ -74,10 +74,10 @@
 #include <time.h>
 #include <string.h>
 
-#include "winBGIm.h"    
-#include "donnees_route.h"
-#include "graphiques_lib.h"
 #include "t_auto.h"
+#include "t_obstacles.h"
+
+
 
 #define PREMIER_POINT 0
 

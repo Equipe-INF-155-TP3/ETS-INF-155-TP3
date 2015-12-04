@@ -6,7 +6,7 @@
 
 #include "winbgim.h"
 #include "graphiques_lib.h"
-#include <math.h>
+#include <math.h>//qui appèle math.h?////////////////////////////////////////////////////////////////////////////////////
 
 #define BKSPACE  8
 #define RETURN  13

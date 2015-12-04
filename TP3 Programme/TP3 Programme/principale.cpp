@@ -73,12 +73,19 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <conio.h>
+#include <windows.h>
+
 
 #include "t_auto.h"
 #include "t_obstacles.h"
 
+<<<<<<< HEAD
 
 #define RAFRAICHISSEMENT 50	//ms
+=======
+#define _CRT_SECURE_NO_WARNINGS
+>>>>>>> origin/master
 #define PREMIER_POINT 0
 
 
@@ -93,7 +100,7 @@
 static char choisir_menu( const char *choix_possible){
 	char choix = 0, i;
 	do {
-		choix=toupper(_getch()); // Percoit la première touche appuillé en majuscule.
+		choix=toupper(getch()); // Percoit la première touche appuillé en majuscule.
 		// Compare la touche appuillé avec tout les élément de la chaine de
 		// caractère "choix_possible".
 		for(i=0;choix_possible[i];i++){
@@ -113,10 +120,8 @@ static void mode_N(){///////////////////////////////////////////////////////////
 	double dir_depart;
 	int nb_obs;
 
-	initialiser_graphique();
-
 	nomF = saisie_nomF();
-
+	
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 	{
 		effacer_ecran();
@@ -129,7 +134,6 @@ static void mode_N(){///////////////////////////////////////////////////////////
 
 static void mode_D(){
 
-	initialiser_graphique();
 	char *nomF = saisie_nomF();
 	t_pt2d cible;
 	t_auto voiture;
@@ -214,23 +218,22 @@ int main()
 	double dir_depart;
 	int nb_obs;
 	int valide;
+	char choix_menu = 'N';
 
-
-
-
-	char choix_menu = 'D';
+	initialiser_graphique();
+	
 	//choix_menu = choisir_menu("NDQ")
 	switch (choix_menu){
 		case 'N':
 			mode_N();
-		break;
+			break;
 		case 'D':
 			mode_D();
-		break;
+			break;
 		case 'Q':
 			//detruire_route();
 			//////////////////////////
-		break;
+			break;
 	}
 
 

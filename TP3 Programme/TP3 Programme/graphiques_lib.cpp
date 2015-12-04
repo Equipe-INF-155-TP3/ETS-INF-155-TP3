@@ -281,7 +281,7 @@ char * saisie_nomF()
 
    /* tant que l'on a pas reçu la touche <ENTER> lire les lettres de la chaîne */
 	do {
-		ch = _getch();
+		ch = getch();
 		switch (ch) {
 			case BKSPACE :   //enlever une lettre de la chaîne
 					if (l) { 
@@ -319,8 +319,8 @@ char * saisie_nomF()
 /*****************************************************************************/
 int saisie_touche(char *ch)
 { 
-  if (_kbhit()) {            //si on a détecté une touche-clavier..
-    *ch = toupper(_getch());   //la touche sera retournée en MAJUSCULES
+  if (kbhit()) {            //si on a détecté une touche-clavier..
+    *ch = toupper(getch());   //la touche sera retournée en MAJUSCULES
 	return 1;
   }
 
@@ -347,7 +347,7 @@ void delai(int ms)
 // Parametres : aucun
 /*****************************************************************************/
 void pause_ecran()
-{  _getch();  }
+{  getch();  }
 
 
 /******************************************************************************

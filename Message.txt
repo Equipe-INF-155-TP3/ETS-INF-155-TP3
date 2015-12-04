@@ -1,11 +1,12 @@
 
-Important, lire au complet svp.
+Remtre le code le 9 décembre avant minuit
+version imprimé le 10 avant 17h au S.E.G, B-2500
 
-Pour corriger les problèmes de compatibilité entre nos versions de visual studio,
-jais du faire en sorte que github ignore tout les fichier de fonctionnement de visual studio.
+Ordre d'impression du programe
+1- données_route.cpp sans le .h
+2- graphique_lib.cpp sans le .h
+3- t_auto.h et t_auto.cpp
+4- -_obstacle.h t 
+5- TP3_principal.cpp
 
-Sa veut dire que seulement les fichier .cpp et .h devrait être "sync".
-
-Cependant, pour y arriver, les fichiers de projet on dut être supprimés.
-Pour régler cela, il suffit de créer un nouveau projet du même nom "TP3 Programme" au même endroit qu'avant "ETS-INF-155-TP3".
-Github ne devrais pas s'en rendre compte.
+sans le module winBGIm

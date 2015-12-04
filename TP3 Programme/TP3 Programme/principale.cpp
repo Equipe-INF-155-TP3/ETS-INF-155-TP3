@@ -78,7 +78,7 @@
 #include "t_obstacles.h"
 
 
-
+#define RAFRAICHISSEMENT 50	//ms
 #define PREMIER_POINT 0
 
 
@@ -138,7 +138,7 @@ static void mode_D(){
 	t_chemin chemin;
 	t_pt2d depart;
 	double dir_depart;
-	int nb_obs;
+	int nb_obs, dimx, dimy;
 	t_pt2d pos_ref, supG, supD, infG, infD;
 	double dist_precedente;
 
@@ -161,13 +161,20 @@ static void mode_D(){
 
 		dist_precedente = dist(pos_ref, cible);
 
+		obt_dim_route(&route, &dimx, &dimy);
+
+
 		do {//////////////////////////////////////////////////////////////////
 			changer_acc_auto(&voiture, cible);
+			effacer_route(dimx, dimy);
+			deplacer_auto(&voiture);
+			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+			getch()
 
 
-
-
-
+			delai(RAFRAICHISSEMENT);
+			
 
 		}while (1);//////////////////////////////////////////////////////////////////////////
 	
@@ -177,13 +184,6 @@ static void mode_D(){
 
 /*
   
-  dist_precedente = distance entre l’auto et la cible		
-  Tant que (on n’a pas terminé le chemin) :
-    Changer l’accélération de l’auto pour aller vers la cible
-    Effacer et réafficher la route (pour effacer l’auto en même temps)
-    Déplacer l'auto
-    Afficher l'auto 
-    Faire une pause de 50 msec.
     Si on a pesé sur ESC on quitte la boucle immédiatement 
     distance = distance entre l’auto et la cible
     Si (on est à moins d'une demi-largeur de la cible ET 

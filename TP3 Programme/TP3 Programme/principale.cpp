@@ -96,8 +96,8 @@ static char choisir_menu( const char *choix_possible){
 	char choix = 0, i;
 	do {
 		choix=toupper(getch()); // Percoit la première touche appuillé en majuscule.
-		// Compare la touche appuillé avec tout les élément de la chaine de
-		// caractère "choix_possible".
+								// Compare la touche appuillé avec tout les élément de la chaine de
+								// caractère "choix_possible".
 		for(i=0;choix_possible[i];i++){
 			if (choix_possible[i] == choix)
 				return choix; // Renvoit la touche appuillé si celle ci est dans la liste.
@@ -114,12 +114,15 @@ static void mode_N(){///////////////////////////////////////////////////////////
 	t_pt2d depart;
 	double dir_depart;
 	int nb_obs;
+	int dimx;
+	int dimy;
 
 	nomF = saisie_nomF();
 	
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 	{
 		effacer_ecran();
+		afficher_menu(route.dimy);
 		dessiner_route(&route);
 		dessiner_chemin(&chemin);
 		pause_ecran();
@@ -143,6 +146,7 @@ static void mode_D(){
 
 
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
+
 		effacer_ecran();
 
 		//Créer la voiture.
@@ -216,9 +220,10 @@ int main()
 	char choix_menu = 'N';
 
 	initialiser_graphique();
-	
-	//choix_menu = choisir_menu("NDQ")
-	switch (choix_menu){
+
+		//choix_menu = choisir_menu("NDQ");
+		switch (choix_menu)
+		{
 		case 'N':
 			mode_N();
 			break;
@@ -229,7 +234,8 @@ int main()
 			//detruire_route();
 			//////////////////////////
 			break;
-	}
+		}
+
 
 
 	fermer_graphique();

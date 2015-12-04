@@ -107,7 +107,7 @@ void deplacer_auto(t_auto *navette){
 	//On accumule la vitesse avec l'accelereration.
 	navette->vel.X += navette->acc.X;
 	navette->vel.Y += navette->acc.Y;
-	vitesse == sqrtl(navette->vel.X*navette->vel.X+navette->vel.Y*navette->vel.Y);
+	vitesse = sqrtl(navette->vel.X*navette->vel.X+navette->vel.Y*navette->vel.Y);
 
 	if (vitesse > MAXVEL){//On normalise la vitesse.
 		navette->vel.X *= MAXVEL/vitesse;

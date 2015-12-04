@@ -8,6 +8,8 @@
 #include "graphiques_lib.h"
 #include <math.h>//qui appèle math.h?////////////////////////////////////////////////////////////////////////////////////
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #define BKSPACE  8
 #define RETURN  13
 #define MAXL    30
@@ -95,6 +97,8 @@ void dessiner_route(const t_route *route)
 void dessiner_chemin(const t_chemin *chemin)     
 { 
 	int i;
+	char buff[80];
+	char msg[20];
 
 	setcolor(POINT);					//On veut des points rouge
 	setfillstyle(SOLID_FILL, POINT);	//Couleur du remplissage
@@ -104,6 +108,9 @@ void dessiner_chemin(const t_chemin *chemin)
 		circle(chemin->liste_pts[i].X, 		//Cercle a partir avec coordonnée (X,Y) avec rayon de 5 (CONSTANTE ?)
 			   chemin->liste_pts[i].Y, 5); 
 		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); //Remplissage du cercle
+
+		itoa(i + 1, buff, 10);													//Conversion de i en string, on débute à #1 donc +1
+		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   //Écriture du # à coté
 	}
 }
 

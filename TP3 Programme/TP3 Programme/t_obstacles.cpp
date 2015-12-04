@@ -35,9 +35,11 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
 	
 		for (i=0; i<liste.nombre; i++){
 			obs = &liste.obstacles[i];
-			//On positionne les obstacles à au moin 5 pixel des bordures.
-			obs->position.X = rand()%(dimx-2*DIST_MIN)+DIST_MIN;
-			obs->position.Y = rand()%(dimy-2*DIST_MIN)+DIST_MIN;
+			do{
+				//On positionne les obstacles à au moin 5 pixel des bordures.
+				obs->position.X = rand() % (dimx - 2 * DIST_MIN) + DIST_MIN;
+				obs->position.Y = rand() % (dimy - 2 * DIST_MIN) + DIST_MIN;
+			} while (0)// Il faut mettre la condition pour 
 
 			////On calcule une vélocité aléatoire.
 			obs->velocite.X = (rand()%1000)*0.001*(VEL_MAX-VEL_MIN)+VEL_MIN;
@@ -97,4 +99,15 @@ void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy){
 		if (obs->position.Y < DIST_MIN || obs->position.Y > dimy-DIST_MIN)
 			obs->velocite.Y *= -1;
 	}
+}
+
+
+//************************##########################************************/
+//*************************# Fonction: detecter_auto #***********************/
+//**************************##########################**********************/
+
+static int detecter_auto(const t_obstacle *obs){
+
+
+
 }

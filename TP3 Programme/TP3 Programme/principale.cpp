@@ -170,8 +170,8 @@ static void mode_D(){
 			deplacer_auto(&voiture);
 			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-			getch()
-
+			if (toupper(getch() == 'Q')
+				return 0;
 
 			delai(RAFRAICHISSEMENT);
 			

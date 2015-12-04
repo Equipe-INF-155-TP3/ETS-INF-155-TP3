@@ -16,3 +16,4 @@
 *.lib
 *.filters
 *.sln
+*.unsuccessfulbuild

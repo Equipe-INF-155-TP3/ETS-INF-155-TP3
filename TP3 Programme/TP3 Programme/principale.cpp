@@ -142,7 +142,8 @@ static void mode_D(){
 	double dir_depart;
 	int nb_obs, dimx, dimy;
 	t_pt2d pos_ref, supG, supD, infG, infD;
-	double dist_precedente;
+	double dist_precedente, distance;
+	int point_rendu;
 
 
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
@@ -154,9 +155,10 @@ static void mode_D(){
 		dessiner_route(&route);
 
 		//obtenir et Afficher la première cible.
-		cible = obt_pt( &chemin, PREMIER_POINT);
+		point_rendu = PREMIER_POINT;
+		cible = obt_pt( &chemin, point_rendu);
 
-		afficher_pos(cible,PREMIER_POINT,1);
+		afficher_pos(cible,point_rendu,1);
 		
 		//Dessiner la voiture.
 		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
@@ -173,12 +175,17 @@ static void mode_D(){
 			deplacer_auto(&voiture);
 			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-			if (toupper(getch() == 'Q')
-				return 0;
+			if (toupper(getch()) == 'Q')
+				return;
+			distance = dist(pos_ref, cible);
+			if (2*distance < LARG && distance > dist_precedente)
+				cible = obt_pt( &chemin, PREMIER_POINT);
+
+
 
 			delai(RAFRAICHISSEMENT);
 			
-
+			dist_precedente = distance;
 		}while (1);//////////////////////////////////////////////////////////////////////////
 	
 		pause_ecran();
@@ -187,8 +194,7 @@ static void mode_D(){
 
 /*
   
-    Si on a pesé sur ESC on quitte la boucle immédiatement 
-    distance = distance entre l’auto et la cible
+
     Si (on est à moins d'une demi-largeur de la cible ET 
         qu'on s'éloigne de la cible), 
 	cible = Récupérer le prochain point s’il en reste, sinon terminé = VRAI 

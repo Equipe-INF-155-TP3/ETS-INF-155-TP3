@@ -121,7 +121,7 @@ void deplacer_auto(t_auto *navette){
 	//On recalcule la direction.
 	//La fonction atan2() corrige automatiquement les signes
 	//On ajoute PI pour compencer la direction décalé de la voiture.
-	navette->dir = atan2(navette->vel.Y,navette->vel.X)+PI;
+	navette->dir = atan2(-navette->vel.Y,navette->vel.X)+PI;
 
 	//On calcule les nouvelles positions des coins.
 	calcule_les_coins(navette);

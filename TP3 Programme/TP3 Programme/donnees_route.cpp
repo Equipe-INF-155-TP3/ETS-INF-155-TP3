@@ -21,8 +21,8 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	if (fichier == NULL)
 		return 0;
 
-	fscanf(fichier,"%d %d\n", &route->dimx, &route->dimy);
-	fscanf(fichier,"%d\n", &route->nb_lignes);
+	fscanf(fichier,"%d %d\n", &(route->dimx), &(route->dimy));
+	fscanf(fichier,"%d\n", &(route->nb_lignes));
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
 
 	for (i = 0; i < (route->nb_lignes); i++){
@@ -82,6 +82,8 @@ void obt_dim_route(const t_route *route, int *dimx, int *dimy){
 	*dimy = route->dimy;
 }
 
-
+int obt_nb_lignes(const t_route *route){
+	return route->nb_lignes;
+}
 
 

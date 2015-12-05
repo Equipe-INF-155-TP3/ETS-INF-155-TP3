@@ -143,8 +143,8 @@ static void mode_D(){
 	int nb_obs, dimx, dimy;
 	t_pt2d pos_ref, supG, supD, infG, infD;
 	double dist_precedente, distance;
-	int point_rendu;
-
+	int prochain_point;
+	char ch;
 
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
 
@@ -155,10 +155,10 @@ static void mode_D(){
 		dessiner_route(&route);
 
 		//obtenir et Afficher la première cible.
-		point_rendu = PREMIER_POINT;
-		cible = obt_pt( &chemin, point_rendu);
+		prochain_point = PREMIER_POINT;
+		cible = obt_pt( &chemin, prochain_point);
 
-		afficher_pos(cible,point_rendu,1);
+		afficher_pos(cible,prochain_point,1);
 		
 		//Dessiner la voiture.
 		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
@@ -169,28 +169,31 @@ static void mode_D(){
 		obt_dim_route(&route, &dimx, &dimy);
 
 
-		do {//////////////////////////////////////////////////////////////////
+		while (prochain_point < obt_nb_lignes(&route)) {
 			changer_acc_auto(&voiture, cible);
 			effacer_route(dimx, dimy);
 			deplacer_auto(&voiture);
 			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-			if (toupper(getch()) == 'Q')
-				return;
+			if ( saisie_touche(&ch) ){
+				printf("Une touche à été appuillé.\n");
+				if ( toupper(ch) == 'Q' )
+					return;
+			}
 			distance = dist(pos_ref, cible);
 			if (2*distance < LARG && distance > dist_precedente){
-				cible = obt_pt( &chemin, PREMIER_POINT);
+				cible = obt_pt( &chemin, ++prochain_point);
 				distance = dist(pos_ref, cible);
-				afficher_pos(cible,point_rendu,1);
+				afficher_pos(cible,prochain_point,1);
+				
+				deplacer_auto(&voiture);
 			}
 
 
 			delai(RAFRAICHISSEMENT);
 			
 			dist_precedente = distance;
-		}while (1);//////////////////////////////////////////////////////////////////////////
-	
-
+		}
 
 		pause_ecran();
 		
@@ -221,7 +224,7 @@ int main()
 	double dir_depart;
 	int nb_obs;
 	int valide;
-	char choix_menu = 'N';
+	char choix_menu = 'D';
 
 	initialiser_graphique();
 

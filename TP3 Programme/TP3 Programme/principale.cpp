@@ -173,6 +173,8 @@ static void mode_D(){
 			changer_acc_auto(&voiture, cible);
 			effacer_route(dimx, dimy);
 			deplacer_auto(&voiture);
+			dessiner_route(&route);
+			dessiner_chemin(&chemin);
 			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 			if ( saisie_touche(&ch) ){
@@ -185,7 +187,6 @@ static void mode_D(){
 				cible = obt_pt( &chemin, ++prochain_point);
 				distance = dist(pos_ref, cible);
 				afficher_pos(cible,prochain_point,dimx);
-				
 			}
 
 

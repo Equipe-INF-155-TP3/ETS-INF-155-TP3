@@ -85,7 +85,7 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
 	navette->acc.Y = delta.Y/distance;
 
 	//Si la voiture s'approche de sa destination, elle cêsse d'accélérer.
-	if(distance < navette->largeur/2 ){
+	if(distance*2 < navette->largeur ){
 		if (abs(delta.X) < 1)
 			navette->acc.X = 0;
 		else

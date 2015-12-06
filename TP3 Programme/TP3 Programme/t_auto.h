@@ -18,7 +18,7 @@
 
 	#define LONG    70
 	#define LARG    40
-	#define MAXVEL	10 
+	#define MAXVEL	5 
 
 
 

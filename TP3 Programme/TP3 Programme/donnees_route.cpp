@@ -71,9 +71,10 @@ void detruire_chemin(t_route *route, t_chemin *chemin){
 
 
 t_pt2d obt_pt(const t_chemin *chemin, int pos){
-	if (pos >= chemin->nb_pts)
+	if (pos >= chemin->nb_pts){
 		printf("Erreur dans la fonction obt_pt. le point [%d] n'existe pas.", pos);
-	else
+		return chemin->liste_pts[chemin->nb_pts];
+	} else
 		return chemin->liste_pts[pos];
 }
 
@@ -86,4 +87,7 @@ int obt_nb_lignes(const t_route *route){
 	return route->nb_lignes;
 }
 
+int obt_nb_pts(const t_chemin *chemin){
+	return chemin->nb_pts;
+}
 

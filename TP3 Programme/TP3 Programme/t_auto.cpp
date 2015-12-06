@@ -89,7 +89,7 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
 		if (abs(delta.X) < 1)
 			navette->acc.X = 0;
 		else
-			navette->acc.X = 0.1;
+			navette->acc.X *= 0.1;
 		if (abs(delta.Y) < 1)
 			navette->acc.Y = 0;
 		else
@@ -102,13 +102,14 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
  //*************************# Fonction: deplacer_auto #**********************/
 //**************************###########################*********************/
 void deplacer_auto(t_auto *navette){
-	int vitesse;//Serviras à stoker la vitesse.
+	double vitesse;//Serviras à stoker la vitesse.
 
 	//On accumule la vitesse avec l'accelereration.
 	navette->vel.X += navette->acc.X;
 	navette->vel.Y += navette->acc.Y;
-	vitesse = sqrtl(navette->vel.X*navette->vel.X+navette->vel.Y*navette->vel.Y);
 
+	vitesse = sqrt(  navette->vel.X*navette->vel.X
+					 +navette->vel.Y*navette->vel.Y );
 	if (vitesse > MAXVEL){//On normalise la vitesse.
 		navette->vel.X *= MAXVEL/vitesse;
 		navette->vel.Y *= MAXVEL/vitesse;

@@ -143,7 +143,7 @@ static void mode_D(){
 	int nb_obs, dimx, dimy;
 	t_pt2d pos_ref, supG, supD, infG, infD;
 	double dist_precedente, distance;
-	int prochain_point;
+	int prochain_point, nb_points;
 	char ch;
 
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
@@ -167,7 +167,9 @@ static void mode_D(){
 		obt_dim_route(&route, &dimx, &dimy);
 		afficher_pos(cible,prochain_point,dimx);
 
-		while (prochain_point < obt_nb_lignes(&route)) {
+		nb_points = obt_nb_pts(&chemin);
+
+		while (prochain_point < nb_points) {
 			changer_acc_auto(&voiture, cible);
 			effacer_route(dimx, dimy);
 			deplacer_auto(&voiture);

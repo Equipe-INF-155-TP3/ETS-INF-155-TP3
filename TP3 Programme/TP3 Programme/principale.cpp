@@ -157,8 +157,6 @@ static void mode_D(){
 		//obtenir et Afficher la première cible.
 		prochain_point = PREMIER_POINT;
 		cible = obt_pt( &chemin, prochain_point);
-
-		afficher_pos(cible,prochain_point,1);
 		
 		//Dessiner la voiture.
 		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
@@ -167,7 +165,7 @@ static void mode_D(){
 		dist_precedente = dist(pos_ref, cible);
 
 		obt_dim_route(&route, &dimx, &dimy);
-
+		afficher_pos(cible,prochain_point,dimx);
 
 		while (prochain_point < obt_nb_lignes(&route)) {
 			changer_acc_auto(&voiture, cible);
@@ -184,9 +182,8 @@ static void mode_D(){
 			if (2*distance < LARG && distance > dist_precedente){
 				cible = obt_pt( &chemin, ++prochain_point);
 				distance = dist(pos_ref, cible);
-				afficher_pos(cible,prochain_point,1);
+				afficher_pos(cible,prochain_point,dimx);
 				
-				deplacer_auto(&voiture);
 			}
 
 

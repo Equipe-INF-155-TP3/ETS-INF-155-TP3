@@ -105,6 +105,9 @@ static char choisir_menu( const char *choix_possible){
 	} while (choix);//Recommence tant que la touche ne correspond pas.
 	return choix;
 }
+
+
+
 //Permet de tester le mode graphique
 static void mode_N(){//////////////////////////////////////////////////////////////
 
@@ -154,46 +157,60 @@ static void mode_D(){
 		voiture = init_auto(depart, dir_depart);
 		dessiner_route(&route);
 
-		//obtenir et Afficher la première cible.
+		//Obtenir et Afficher la première cible.
 		prochain_point = PREMIER_POINT;
 		cible = obt_pt( &chemin, prochain_point);
-		
-		//Dessiner la voiture.
-		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-		dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-
-		dist_precedente = dist(pos_ref, cible);
-
-		obt_dim_route(&route, &dimx, &dimy);
-		afficher_pos(cible,prochain_point,dimx);
-
 		nb_points = obt_nb_pts(&chemin);
 
+		//Dessiner la voiture et obtenir des conditions initiales.
+		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+		dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+		dist_precedente = dist(pos_ref, cible);
+		obt_dim_route(&route, &dimx, &dimy);
+		nb_points = obt_nb_pts(&chemin);
+		afficher_pos(cible,prochain_point,dimx);
+
+		//Boucle d'éxécution de la simulation.
 		while (prochain_point < nb_points) {
+
+
+			//Calcul du comportement de la voiture.
 			changer_acc_auto(&voiture, cible);
-			effacer_route(dimx, dimy);
 			deplacer_auto(&voiture);
-			dessiner_route(&route);
-			dessiner_chemin(&chemin);
 			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-			if ( saisie_touche(&ch) ){
-				printf("Une touche à été appuillé.\n");
-				if ( toupper(ch) == 'Q' )
-					return;
-			}
+
 			distance = dist(pos_ref, cible);
 			if (2*distance < LARG && distance > dist_precedente){
 				cible = obt_pt( &chemin, ++prochain_point);
 				distance = dist(pos_ref, cible);
 				afficher_pos(cible,prochain_point,dimx);
 			}
-
-
-			delai(RAFRAICHISSEMENT);
-			
 			dist_precedente = distance;
-		}
+
+
+
+			//effacer et redessiner le monde.
+			effacer_route(dimx, dimy);
+			dessiner_route(&route);
+			dessiner_chemin(&chemin);
+			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+
+			//vérifier si une touche a été appuillé.
+			if ( saisie_touche(&ch) ){
+				printf("Une touche à été appuillé.\n");
+				if ( toupper(ch) == 'Q' )
+					return;
+			}
+
+			//Pause pour limiter la vitesse d'éxécution.
+			delai(RAFRAICHISSEMENT);
+
+
+		}//Fin de la boucle de simulation.
+
+
+
 
 		pause_ecran();
 		

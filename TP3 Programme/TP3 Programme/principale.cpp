@@ -141,6 +141,7 @@ static void mode_D(){
 
 	t_route route;
 	t_chemin chemin;
+	t_liste_obs  obstacles;
 	t_pt2d depart;
 	double dir_depart;
 	int nb_obs, dimx, dimy;
@@ -153,9 +154,14 @@ static void mode_D(){
 
 		effacer_ecran();
 
-		//Créer la voiture.
+		//Obtenir les données de la route et du chemin.
+		obt_dim_route(&route, &dimx, &dimy);
+		nb_points = obt_nb_pts(&chemin);
+
+		//Créer la voiture et les obstacles.
 		voiture = init_auto(depart, dir_depart);
 		dessiner_route(&route);
+		obstacles = creer_liste_obs( nb_obs, dimx, dimy );
 
 		//Obtenir et Afficher la première cible.
 		prochain_point = PREMIER_POINT;
@@ -166,9 +172,8 @@ static void mode_D(){
 		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 		dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 		dist_precedente = dist(pos_ref, cible);
-		obt_dim_route(&route, &dimx, &dimy);
-		nb_points = obt_nb_pts(&chemin);
 		afficher_pos(cible,prochain_point,dimx);
+
 
 		//Boucle d'éxécution de la simulation.
 		while (prochain_point < nb_points) {
@@ -186,15 +191,20 @@ static void mode_D(){
 				afficher_pos(cible,prochain_point,dimx);
 			}
 			dist_precedente = distance;
+			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 
+			//Calcul du comportement des obstacles.
+			deplacer_obs( &obstacles, dimx, dimy );
 
 
 			//effacer et redessiner le monde.
 			effacer_route(dimx, dimy);
-			dessiner_route(&route);
-			dessiner_chemin(&chemin);
-			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+			dessiner_route(&route);
+			//dessiner_chemin(&chemin);
+			afficher_obs(&obstacles);
+
+
 
 			//vérifier si une touche a été appuillé.
 			if ( saisie_touche(&ch) ){

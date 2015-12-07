@@ -23,7 +23,7 @@ static int detecter_auto(const t_obstacle *obs){
 		decal = (i / 2);
 		p.X = p3.X + dy*decal;
 		p.Y = p3.Y + dx*decal;
-		dessiner_rond(p, 2); // Pour d?boguage
+	//	dessiner_rond(p, 2); // Pour déboguage
 		if (detecter_pixel(p) == AUTO)
 			return 1;
 	}
@@ -90,7 +90,6 @@ void detruire_obs(t_liste_obs *obstacles){
 //**************************##########################**********************/
 void afficher_obs(const t_liste_obs *obstacles){
 	int i;
-
 	for(i=0; i<obstacles->nombre; i++){
 		dessiner_rond(obstacles->obstacles[i].position
 					 ,obstacles->obstacles[i].couleur);

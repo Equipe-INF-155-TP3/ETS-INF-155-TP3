@@ -50,6 +50,10 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 		fscanf(fichier, "%lf",   &chemin->liste_pts[i].X);
 		fscanf(fichier, "%lf\n", &chemin->liste_pts[i].Y);
 	}
+
+	//On obtien le nombre d'obstacles.
+	fscanf(fichier, "%d", nb_obs);
+
 	return 1;
 }
 

@@ -8,14 +8,18 @@ static int detecter_obs(const t_auto *navette){
 	double distance, angle;
 	t_pt2d point;
 	double test = DEMI_PI;
-	for(distance = PAS_VIS_VOIT; distance <= DIST_VIS_VOIT; distance += PAS_VIS_VOIT ){
+	double max = navette->largeur/2+30;
+	for(distance = navette->largeur/2; distance <= max; distance += 15 ){
 		for(angle = -DEMI_CHP_VIS_VOIT; angle <= DEMI_CHP_VIS_VOIT ; angle += PAS_CHP_VIS_VOIT ){
-			point.X = navette->position.X+distance*cos(angle+navette->dir+DEMI_PI);
-			point.Y = navette->position.Y+distance*sin(angle+navette->dir+DEMI_PI);
+			point.X = navette->position.X+distance*cos(angle-navette->dir+DEMI_PI);
+			point.Y = navette->position.Y+distance*sin(angle-navette->dir+DEMI_PI);
 			couleur = detecter_pixel(point);
-			if ( couleur != AUTO && couleur != NOIR )
+			//dessiner_rond(point, AUTO);
+			if ( couleur != AUTO && couleur != NOIR ){
+				printf("atention!  Pouet Pouet!");
+				//dessiner_rond(point, 2);
 				return 1;
-			//dessiner_rond(point, 2);
+			}
 		}
 	}
 	return 0;

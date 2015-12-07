@@ -16,20 +16,18 @@ static int detecter_auto(const t_obstacle *obs){
 	dx *= CHAMP_VISION / vel; //Normalisation du vecteur
 	dy *= CHAMP_VISION / vel; //
 
-	p3.X = (obs->position.X + obs->velocite.X);
-	p3.Y = (obs->position.Y + obs->velocite.Y);
+	p3.X = (obs->position.X + dx);
+	p3.Y = (obs->position.Y + dy);
 
-	for (i = -2; i < 3; i++){
+	for (i = -LARG_VISION; i <= LARG_VISION; i++){
 		decal = (i / 2);
 		p.X = p3.X + dy*decal;
-		p.Y = p3.Y + dx*decal;
-	//	dessiner_rond(p, 2); // Pour déboguage
+		p.Y = p3.Y - dx*decal;
+		//dessiner_rond(p, obs->couleur); // Pour déboguage
 		if (detecter_pixel(p) == AUTO)
 			return 1;
 	}
 	return 0;
-
-
 }
 
 

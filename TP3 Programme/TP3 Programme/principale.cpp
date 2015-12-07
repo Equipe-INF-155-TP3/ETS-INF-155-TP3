@@ -113,34 +113,13 @@ static char choisir_menu( const char *choix_possible){
 
 
 
-//Permet de tester le mode graphique
-static void mode_N(){//////////////////////////////////////////////////////////////
-
-	char *nomF;
-	t_route route;
-	t_chemin chemin;
-	t_pt2d depart;
-	double dir_depart;
-	int nb_obs;
-	int dimx;
-	int dimy;
-
-	nomF = saisie_nomF();
-	
-	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
-	{
-		effacer_ecran();
-		afficher_menu(route.dimy);
-		dessiner_route(&route);
-		dessiner_chemin(&chemin);
-		pause_ecran();
-	}
-}/////////////////////////////////////////////////////////////////////////////////////
 
 
-static void mode_D(){
-
-
+  //******************##################################**********************/
+ //*******************#  Fonction: Entrée du programe  #*********************/
+//********************##################################********************/
+int main()
+{
 	t_pt2d cible;
 	t_auto voiture;
 
@@ -154,123 +133,95 @@ static void mode_D(){
 	double dist_precedente, distance;
 	int prochain_point, nb_points;
 	char ch, *nomF;
-
-
-	//nomF = saisie_nomF();
-	nomF = "haunted_house.txt";
-	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
-
-		effacer_ecran();
-
-		//Obtenir les données de la route et du chemin.
-		obt_dim_route(&route, &dimx, &dimy);
-		nb_points = obt_nb_pts(&chemin);
-
-		//Créer la voiture et les obstacles.
-		voiture = init_auto(depart, dir_depart);
-		dessiner_route(&route);
-		obstacles = creer_liste_obs( nb_obs, dimx, dimy );
-
-		//Obtenir et Afficher la première cible.
-		prochain_point = PREMIER_POINT;
-		cible = obt_pt( &chemin, prochain_point);
-		nb_points = obt_nb_pts(&chemin);
-
-		//Dessiner la voiture et obtenir des conditions initiales.
-		obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-		dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-		dist_precedente = dist(pos_ref, cible);
-		afficher_pos(cible,prochain_point,dimx);
-
-
-		//Boucle d'éxécution de la simulation.
-		while (prochain_point < nb_points) {
-
-
-			//Calcul du comportement de la voiture.
-			changer_acc_auto(&voiture, cible);
-			deplacer_auto(&voiture);
-			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-
-			distance = dist(pos_ref, cible);
-			if (2*distance < LARG && distance > dist_precedente){
-				cible = obt_pt( &chemin, ++prochain_point);
-				distance = dist(pos_ref, cible);
-				afficher_pos(cible,prochain_point,dimx);
-			}
-			dist_precedente = distance;
-			obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-
-			//Calcul du comportement des obstacles.
-			deplacer_obs( &obstacles, dimx, dimy );
-
-
-			//effacer et redessiner le monde.
-			effacer_route(dimx, dimy);
-			dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-			dessiner_route(&route);
-			//dessiner_chemin(&chemin);
-			afficher_obs(&obstacles);
+	char choix_menu = 'N';
 
 
 
-			//vérifier si une touche a été appuillé.
-			if ( saisie_touche(&ch) ){
-				printf("Une touche à été appuillé.\n");
-				if ( toupper(ch) == 'Q' )
-					return;
-			}
-
-			//Pause pour limiter la vitesse d'éxécution.
-			delai(RAFRAICHISSEMENT);
-
-
-		}//Fin de la boucle de simulation.
-
-
-
-
-		pause_ecran();
-		
-	}
-
-/*
-  
-
-
-  Fin boucle
-Fin Si
-Fermer le mode graphique
-
-*/
-
-}
-
-
-  //******************##################################**********************/
- //*******************#  Fonction: Entrée du programe  #*********************/
-//********************##################################********************/
-int main()
-{
-	char *nomF;
-	t_route route;
-	t_chemin chemin;
-	t_pt2d depart;
-	double dir_depart;
-	int nb_obs;
-	int valide;
-	char choix_menu = 'D';
 
 	initialiser_graphique();
 
+	do{
+
+		//vérifier si une touche a été appuillé.
+		if ( saisie_touche(&ch) ){
+			choix_menu = toupper(ch);
+		}
 		//choix_menu = choisir_menu("NDQ");
 		switch (choix_menu)
 		{
 		case 'N':
-			mode_N();
+
+			// Saisir le nom de fichier.
+			nomF = saisie_nomF();
+			//nomF = "haunted_house.txt";
+
+			if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
+			{
+				//Obtenir les données de la route et du chemin.
+				obt_dim_route(&route, &dimx, &dimy);
+				nb_points = obt_nb_pts(&chemin);
+
+				//Créer la voiture et les obstacles.
+				voiture = init_auto(depart, dir_depart);
+				dessiner_route(&route);
+				obstacles = creer_liste_obs( nb_obs, dimx, dimy );
+
+				//Obtenir et Afficher la première cible.
+				prochain_point = PREMIER_POINT;
+				cible = obt_pt( &chemin, prochain_point);
+				nb_points = obt_nb_pts(&chemin);
+
+				//Dessiner la voiture et obtenir des conditions initiales.
+				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+				dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+				dist_precedente = dist(pos_ref, cible);
+				afficher_pos(cible,prochain_point,dimx);
+
+				//On réactive la boucle.
+				choix_menu = 0;
+			}
+
 			break;
 		case 'D':
-			mode_D();
+
+	
+			if (prochain_point < nb_points) {
+
+
+				//Calcul du comportement de la voiture.
+				changer_acc_auto(&voiture, cible);
+				deplacer_auto(&voiture);
+				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+
+				distance = dist(pos_ref, cible);
+				if (2*distance < LARG && distance > dist_precedente){
+					cible = obt_pt( &chemin, ++prochain_point);
+					distance = dist(pos_ref, cible);
+					afficher_pos(cible,prochain_point,dimx);
+				}
+				dist_precedente = distance;
+				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+
+				//Calcul du comportement des obstacles.
+				deplacer_obs( &obstacles, dimx, dimy );
+
+
+				//effacer et redessiner le monde.
+				effacer_route(dimx, dimy);
+				dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+				dessiner_route(&route);
+				//dessiner_chemin(&chemin);
+				afficher_obs(&obstacles);
+
+
+				//Pause pour limiter la vitesse d'éxécution.
+				delai(RAFRAICHISSEMENT);
+
+
+			}//Fin de la boucle de simulation.
+
+
+
 			break;
 		case 'Q':
 			//detruire_route();
@@ -278,7 +229,7 @@ int main()
 			break;
 		}
 
-
+	} while(1);
 
 	fermer_graphique();
 

@@ -6,7 +6,7 @@
 
 #include "winbgim.h"
 #include "graphiques_lib.h"
-#include <math.h>//qui appèle math.h?////////////////////////////////////////////////////////////////////////////////////
+#include <math.h>
 
 #define _CRT_SECURE_NO_WARNINGS
 

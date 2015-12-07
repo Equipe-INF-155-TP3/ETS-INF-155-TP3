@@ -60,6 +60,9 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
 			////On calcule une vélocité aléatoire.
 			obs->velocite.X = (rand()%1000)*0.001*(VEL_MAX-VEL_MIN)+VEL_MIN;
 			obs->velocite.Y = (rand()%1000)*0.001*(VEL_MAX-VEL_MIN)+VEL_MIN;
+			if (rand()%2) obs->velocite.X *= -1;
+			if (rand()%2) obs->velocite.Y *= -1;
+
 
 			//On applique la couleur aléatoire
 			do obs->couleur = rand()%MAX_COULEUR;

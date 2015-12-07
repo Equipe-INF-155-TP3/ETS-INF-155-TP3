@@ -6,8 +6,8 @@
 
 	Auteurs:
 		- Philippe La Madeleine -LAMP21099204
-		- //////////////  écriver votre nom et votre code permanent ici  //////////////
-		- //////////////  écriver votre nom et votre code permanent ici  //////////////
+		- //////////////  écriver votre nom et votre code permanent ici  ///////////////
+		- //////////////  écriver votre nom et votre code permanent ici  ///////////////
 
 	Cours: INF-155
 
@@ -87,32 +87,7 @@
 
 #define RAFRAICHISSEMENT 50	//ms
 #define PREMIER_POINT 0
-
-
-  //***************########################################*******************/
- //****************#  Définition des fonctions statiques  #******************/
-//*****************########################################*****************/
-
-
-  //********************#############################************************/
- //*********************#  Fonction: choix du menu  #***********************/
-//**********************#############################**********************/
-static char choisir_menu( const char *choix_possible){
-	char choix = 0, i;
-	do {
-		choix=toupper(getch()); // Percoit la première touche appuillé en majuscule.
-								// Compare la touche appuillé avec tout les élément de la chaine de
-								// caractère "choix_possible".
-		for(i=0;choix_possible[i];i++){
-			if (choix_possible[i] == choix)
-				return choix; // Renvoit la touche appuillé si celle ci est dans la liste.
-		}
-	} while (choix);//Recommence tant que la touche ne correspond pas.
-	return choix;
-}
-
-
-
+#define CHOIX_POSSIBLES "DNQ"
 
 
   //******************##################################**********************/
@@ -120,22 +95,24 @@ static char choisir_menu( const char *choix_possible){
 //********************##################################********************/
 int main()
 {
-	t_pt2d cible;
-	t_auto voiture;
+
 
 	t_route route;
 	t_chemin chemin;
+	t_auto voiture;
+	t_pt2d pos_ref, supG, supD, infG, infD;
 	t_liste_obs  obstacles;
+	int nb_obs, dimx, dimy, i;
+	int chemin_charge = 0;
+
 	t_pt2d depart;
 	double dir_depart;
-	int nb_obs, dimx, dimy;
-	t_pt2d pos_ref, supG, supD, infG, infD;
-	double dist_precedente, distance;
+
+	t_pt2d cible;
 	int prochain_point, nb_points;
-	char ch, *nomF;
-	char choix_menu = 'N';
+	double dist_precedente, distance;
 
-
+	char choix_menu = 'N', ch, *nomF;
 
 
 	initialiser_graphique();
@@ -144,88 +121,105 @@ int main()
 
 		//vérifier si une touche a été appuillé.
 		if ( saisie_touche(&ch) ){
-			choix_menu = toupper(ch);
-		}
-		//choix_menu = choisir_menu("NDQ");
-		switch (choix_menu)
-		{
-		case 'N':
-
-			// Saisir le nom de fichier.
-			nomF = saisie_nomF();
-			//nomF = "haunted_house.txt";
-
-			if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
-			{
-				//Obtenir les données de la route et du chemin.
-				obt_dim_route(&route, &dimx, &dimy);
-				nb_points = obt_nb_pts(&chemin);
-
-				//Créer la voiture et les obstacles.
-				voiture = init_auto(depart, dir_depart);
-				dessiner_route(&route);
-				obstacles = creer_liste_obs( nb_obs, dimx, dimy );
-
-				//Obtenir et Afficher la première cible.
-				prochain_point = PREMIER_POINT;
-				cible = obt_pt( &chemin, prochain_point);
-				nb_points = obt_nb_pts(&chemin);
-
-				//Dessiner la voiture et obtenir des conditions initiales.
-				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-				dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-				dist_precedente = dist(pos_ref, cible);
-				afficher_pos(cible,prochain_point,dimx);
-
-				//On réactive la boucle.
-				choix_menu = 0;
+			for(i=0;CHOIX_POSSIBLES[i];i++){
+				if (CHOIX_POSSIBLES[i] == ch)
+					choix_menu = toupper(ch);
 			}
+		}
 
-			break;
-		case 'D':
+		//choix_menu = choisir_menu("NDQ");
+		switch (choix_menu) {
+			case 'N':
 
-	
-			if (prochain_point < nb_points) {
-
-
-				//Calcul du comportement de la voiture.
-				changer_acc_auto(&voiture, cible);
-				deplacer_auto(&voiture);
-				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-
-				distance = dist(pos_ref, cible);
-				if (2*distance < LARG && distance > dist_precedente){
-					cible = obt_pt( &chemin, ++prochain_point);
-					distance = dist(pos_ref, cible);
-					afficher_pos(cible,prochain_point,dimx);
+				effacer_ecran();
+				if (chemin_charge){
+					detruire_chemin(&route, &chemin);
+					chemin_charge = 0;
 				}
-				dist_precedente = distance;
-				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-
-				//Calcul du comportement des obstacles.
-				deplacer_obs( &obstacles, dimx, dimy );
-
-
-				//effacer et redessiner le monde.
-				effacer_route(dimx, dimy);
-				dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-				dessiner_route(&route);
-				//dessiner_chemin(&chemin);
-				afficher_obs(&obstacles);
+				// Saisir le nom de fichier.
+				nomF = saisie_nomF();
+				//nomF = "haunted_house.txt";
+				effacer_ecran();
 
 
-				//Pause pour limiter la vitesse d'éxécution.
-				delai(RAFRAICHISSEMENT);
+
+				if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
+				{
+					//Obtenir les données de la route et du chemin.
+					obt_dim_route(&route, &dimx, &dimy);
+					nb_points = obt_nb_pts(&chemin);
+
+					//Créer la voiture et les obstacles.
+					voiture = init_auto(depart, dir_depart);
+					dessiner_route(&route);
+					obstacles = creer_liste_obs( nb_obs, dimx, dimy );
+
+					//Obtenir et Afficher la première cible.
+					prochain_point = PREMIER_POINT;
+					cible = obt_pt( &chemin, prochain_point);
+					nb_points = obt_nb_pts(&chemin);
+
+					//Dessiner la voiture et obtenir des conditions initiales.
+					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+					dist_precedente = dist(pos_ref, cible);
+					afficher_pos(cible,prochain_point,dimx);
+
+					afficher_menu(dimy);
+					chemin_charge = 1;
+
+					//On réactive la boucle.
+					choix_menu = 0;
+				}
+
+			break;
+			case 'D':
+
+				if (prochain_point < nb_points) {
+
+					//Calcul du comportement de la voiture.
+					changer_acc_auto(&voiture, cible);
+					deplacer_auto(&voiture);
+					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+
+					distance = dist(pos_ref, cible);
+					if (2*distance < LARG && distance > dist_precedente ){
+						if (prochain_point < nb_points-1){
+							cible = obt_pt( &chemin, ++prochain_point);
+							distance = dist(pos_ref, cible);
+							afficher_pos(cible,prochain_point,dimx);
+						}else{
+							choix_menu = 0;
+						}
+
+					}
+					dist_precedente = distance;
+					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+
+					//Calcul du comportement des obstacles.
+					deplacer_obs( &obstacles, dimx, dimy );
 
 
-			}//Fin de la boucle de simulation.
+					//effacer et redessiner le monde.
+					effacer_route(dimx, dimy);
+					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
+					dessiner_route(&route);
+					//dessiner_chemin(&chemin);
+					afficher_obs(&obstacles);
+
+					afficher_menu(dimy);
+					//Pause pour limiter la vitesse d'éxécution.
+					delai(RAFRAICHISSEMENT);
+
+
+				}//Fin de la boucle de simulation.
 
 
 
 			break;
-		case 'Q':
-			//detruire_route();
-			//////////////////////////
+			case 'Q':
+				//detruire_route();
+				//////////////////////////
 			break;
 		}
 

@@ -27,7 +27,12 @@
 			- detruire_chemin
 			- dist
 			- lire_fichier
-
+			- obt_dim_route
+			- obt_ligne
+			- obt_nb_lignes
+			- obt_pt
+			- obt_nb_pts
+	
 		* Module graphique
 			- afficher_menu
 			- afficher_pos

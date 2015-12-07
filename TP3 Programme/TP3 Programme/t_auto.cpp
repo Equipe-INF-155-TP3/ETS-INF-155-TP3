@@ -131,9 +131,6 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
 			navette->acc.Y *= 0.1;
 		navette->attente = 0;
 	}
-
-
-
 }
 
 

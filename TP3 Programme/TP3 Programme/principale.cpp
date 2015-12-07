@@ -135,7 +135,7 @@ static void mode_N(){///////////////////////////////////////////////////////////
 
 static void mode_D(){
 
-	char *nomF = saisie_nomF();
+
 	t_pt2d cible;
 	t_auto voiture;
 
@@ -148,8 +148,11 @@ static void mode_D(){
 	t_pt2d pos_ref, supG, supD, infG, infD;
 	double dist_precedente, distance;
 	int prochain_point, nb_points;
-	char ch;
+	char ch, *nomF;
 
+
+	//nomF = saisie_nomF();
+	nomF = "haunted_house.txt";
 	if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs)){
 
 		effacer_ecran();

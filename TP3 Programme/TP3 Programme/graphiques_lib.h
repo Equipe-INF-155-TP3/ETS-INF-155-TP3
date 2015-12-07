@@ -23,8 +23,8 @@
 #define  POINT			4       //un point-cible (rouge)
 #define  AUTO			1       //une auto (bleu)
 
-#define DEMI_PI atan(1.0)
-#define PI asin(1.0)
+#define DEMI_PI atan(1.0)*2
+#define PI DEMI_PI*2
 
 /******************************************************************************/
 // Fonction pour démarrer le mode graphique.

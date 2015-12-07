@@ -18,9 +18,15 @@
 
 	#define LONG    70
 	#define LARG    40
-	#define MAXVEL	5 
+	#define MAXVEL	5
+	#define FREIN	-0.7
+	#define PRUDENCE 0.3
 
+	#define DIST_VIS_VOIT	30 //Distance de vision de la voiture.
+	#define PAS_VIS_VOIT	10  //Pas de test de vision de la voiture.
 
+	#define DEMI_CHP_VIS_VOIT	DEMI_PI		//La moitié du champ de vision total de la voiture.
+	#define PAS_CHP_VIS_VOIT	3.0/90.0*DEMI_PI //Pas angulaire de test de vision de la voiture.
 
 	typedef struct{						//Enregistrement des infos sur l'auto
 	  t_pt2d	acc;					//vecteur accélération

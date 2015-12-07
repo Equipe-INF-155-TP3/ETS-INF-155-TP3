@@ -1,5 +1,26 @@
 #include "t_auto.h"
 
+  //***********************##########################*************************/
+ //************************# Fonction: detecter_obs #************************/
+//*************************##########################***********************/
+static int detecter_obs(const t_auto *navette){
+	int couleur;
+	double distance, angle;
+	t_pt2d point;
+	double test = DEMI_PI;
+	for(distance = PAS_VIS_VOIT; distance <= DIST_VIS_VOIT; distance += PAS_VIS_VOIT ){
+		for(angle = -DEMI_CHP_VIS_VOIT; angle <= DEMI_CHP_VIS_VOIT ; angle += PAS_CHP_VIS_VOIT ){
+			point.X = navette->position.X+distance*cos(angle+navette->dir+DEMI_PI);
+			point.Y = navette->position.Y+distance*sin(angle+navette->dir+DEMI_PI);
+			couleur = detecter_pixel(point);
+			if ( couleur != AUTO && couleur != NOIR )
+				return 1;
+			//dessiner_rond(point, 2);
+		}
+	}
+	return 0;
+}
+
 
   //*********************###############################**********************/
  //**********************# Fonction: calcule_les_coins #*********************/
@@ -75,14 +96,28 @@ void obt_pos_auto(const t_auto *navette, t_pt2d *pos_ref,
 void changer_acc_auto(t_auto *navette, t_pt2d dest){
 	double distance;
 	t_pt2d delta;
+	double gaz;
+
+
 	//On calcule la distance entre la voiture et sa destination.
 	delta.X = dest.X-navette->position.X;
 	delta.Y = dest.Y-navette->position.Y;
 	distance = dist(dest,navette->position);
 
+	
 	//On calcule l'accélération.
-	navette->acc.X = delta.X/distance;
-	navette->acc.Y = delta.Y/distance;
+	if (detecter_obs(navette)){
+		navette->attente = 1;
+		navette->acc.X = navette->vel.X*FREIN;
+		navette->acc.Y = navette->vel.Y*FREIN;
+	} else {
+		if (navette->attente)
+			gaz = PRUDENCE;
+		else gaz = 1;
+		
+		navette->acc.X = delta.X/distance*gaz;
+		navette->acc.Y = delta.Y/distance*gaz;
+	}
 
 	//Si la voiture s'approche de sa destination, elle cêsse d'accélérer.
 	if(distance*2 < navette->largeur ){
@@ -94,7 +129,11 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
 			navette->acc.Y = 0;
 		else
 			navette->acc.Y *= 0.1;
+		navette->attente = 0;
 	}
+
+
+
 }
 
 
@@ -122,8 +161,12 @@ void deplacer_auto(t_auto *navette){
 	//On recalcule la direction.
 	//La fonction atan2() corrige automatiquement les signes
 	//On ajoute PI pour compencer la direction décalé de la voiture.
-	navette->dir = atan2(-navette->vel.Y,navette->vel.X)+PI;
+	navette->dir = atan2(-navette->vel.Y,navette->vel.X)+DEMI_PI;
 
 	//On calcule les nouvelles positions des coins.
 	calcule_les_coins(navette);
 }
+
+
+
+

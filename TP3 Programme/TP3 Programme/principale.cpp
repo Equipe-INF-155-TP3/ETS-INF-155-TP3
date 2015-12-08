@@ -85,11 +85,7 @@
 #include "t_auto.h"
 #include "t_obstacles.h"
 
-<<<<<<< HEAD
-#define RAFRAICHISSEMENT 0	//ms
-=======
 #define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
->>>>>>> origin/master
 #define PREMIER_POINT 0
 #define CHOIX_POSSIBLES "DN"
 #define ECHAP 27
@@ -177,13 +173,8 @@ int main()
 					afficher_menu(dimy);
 					chemin_charge = 1;
 
-<<<<<<< HEAD
-					//On réactive la boucle.
-					choix_menu = ECHAP;
-=======
 					/* On réactive la boucle */
-					choix_menu = 0;
->>>>>>> origin/master
+					choix_menu = ECHAP;
 				}
 
 			break;
@@ -218,12 +209,8 @@ int main()
 					effacer_route(dimx, dimy);
 					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 					dessiner_route(&route);
-<<<<<<< HEAD
-=======
 
 					/* dessiner_chemin(&chemin) */
-
->>>>>>> origin/master
 					afficher_obs(&obstacles);
 
 					afficher_menu(dimy);

@@ -39,11 +39,11 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	}
 
 	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);
-	*dir_dep = dir_dep_deg*RAD_A_DEG; // Conversion des radians en degrés
+	*dir_dep = dir_dep_deg*RAD_A_DEG; /* Conversion des radians en degrés */
 
 	fscanf(fichier,"%d\n", &chemin->nb_pts);
 
-	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); //erreur ...
+	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); 
 
 	for (i = 0; i < (chemin->nb_pts); i++)
 	{
@@ -51,8 +51,7 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 		fscanf(fichier, "%lf\n", &chemin->liste_pts[i].Y);
 	}
 
-	//On obtien le nombre d'obstacles.
-	fscanf(fichier, "%d", nb_obs);
+	fscanf(fichier, "%d", nb_obs); 	/* On obtient le nombre d'obstacles */
 
 	return 1;
 }
@@ -60,12 +59,12 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 
 double dist(t_pt2d p1, t_pt2d p2){
 
-	double dx, dy; // Déclaration des variables
+	double dx, dy; /* Déclaration des variables */
 
-	dx = (p2.X) - (p1.X); // calcul de la différence en X
-	dy = (p2.Y) - (p1.Y); // calcul de la différence en Y
+	dx = (p2.X) - (p1.X); /* Calcul de la différence en X */
+	dy = (p2.Y) - (p1.Y); /* Calcul de la différence en Y */
 	
-	return sqrt(dx*dx+dy*dy);  // Application du théorème de Pythagore
+	return sqrt(dx*dx+dy*dy);  /* Application du théorème de Pythagore */
 }
 
 void detruire_chemin(t_route *route, t_chemin *chemin){

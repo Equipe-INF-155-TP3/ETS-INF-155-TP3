@@ -13,7 +13,7 @@
 #define BKSPACE  8
 #define RETURN  13
 #define MAXL    30
-#define ARRONDI(x) ((int)floor(x + 0.5))   //permet d'arrondir les coordonnées réelles
+#define ARRONDI(x) ((int)floor(x + 0.5))   /* Permet d'arrondir les coordonnées réelles */
 
 /******************************************************************************
 // initialiser_graphique
@@ -50,9 +50,9 @@ static void dessiner_ligne(t_pt2d ptA, t_pt2d ptB)
 	setlinestyle(SOLID_LINE, 1, 3);
 
 	/****** ARRONDIR LES POINTS ******/
-	moveto(ARRONDI(ptA.X), ARRONDI(ptA.Y));  //Positionner le crayon au debut de la ligne
+	moveto(ARRONDI(ptA.X), ARRONDI(ptA.Y));  /* Positionner le crayon au debut de la ligne */
 		   
-	lineto(ARRONDI(ptB.X), ARRONDI(ptB.Y));  //Faire une ligne jusqu'a l'extremité de fin
+	lineto(ARRONDI(ptB.X), ARRONDI(ptB.Y));  /* Faire une ligne jusqu'a l'extremité de fin */
 }
 
 
@@ -72,17 +72,15 @@ void dessiner_route(const t_route *route)
 	xmax = route->dimx;   
 	ymax = route->dimy;
 
-	setcolor(LIGNE); //On veut des lignes blanches
+	setcolor(LIGNE);						/* On veut des lignes blanches */
 
-	for (i = 0; i < route->nb_lignes; i++)
+	for (i = 0; i < route->nb_lignes; i++)	/* Dessiner route avec point A et B initial et point A et B final */
 	{
 		line(route->liste_lignes[i].ptA.X,
 			 route->liste_lignes[i].ptA.Y,
 			 route->liste_lignes[i].ptB.X,
 			 route->liste_lignes[i].ptB.Y);
-
 	}
-
 }
 
 
@@ -100,17 +98,18 @@ void dessiner_chemin(const t_chemin *chemin)
 	char buff[80];
 	char msg[20];
 
-	setcolor(POINT);					//On veut des points rouge
-	setfillstyle(SOLID_FILL, POINT);	//Couleur du remplissage
+	setcolor(POINT);					/* On veut des points rouge */
+	setfillstyle(SOLID_FILL, POINT);	/* Couleur du remplissage */
 
 	for (i = 0; i < chemin->nb_pts; i++)
 	{
-		circle(chemin->liste_pts[i].X, 		//Cercle a partir avec coordonnée (X,Y) avec rayon de 5 (CONSTANTE ?)
-			   chemin->liste_pts[i].Y, 5); 
-		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); //Remplissage du cercle
+		circle(chemin->liste_pts[i].X, 			/* Cercle avec coordonnée (X,Y) avec rayon POINT */
+			   chemin->liste_pts[i].Y, POINT); 
+		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); /* Remplissage du cercle */
 
-		itoa(i + 1, buff, 10);													//Conversion de i en string, on débute à #1 donc +1
-		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   //Écriture du # à coté
+		
+		itoa(i + 1, buff, 10);													/* Conversion de i en string, on débute à #1 donc +1 */
+		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   /* Écriture du numéro de point à coté */
 	}
 }
 
@@ -129,7 +128,7 @@ void dessiner_rond(t_pt2d pt, int coul)
    setfillstyle(SOLID_FILL, coul);
 
    /******** ARRONDIR *******/
-   circle(ARRONDI(pt.X), ARRONDI(pt.Y), 6);   //cercle avec 6 pixels de rayon
+   circle(ARRONDI(pt.X), ARRONDI(pt.Y), 6);   /* Cercle avec 6 pixels de rayon */
    floodfill(ARRONDI(pt.X), ARRONDI(pt.Y), coul);
 }
 
@@ -186,13 +185,13 @@ void afficher_pos(t_pt2d cible, int i, int dimx)
    }
 
    settextstyle(DEFAULT_FONT, HORIZ_DIR, 1);
-   texth = textheight("XXX") + 1;   //taille de la police en pixels
-   py = 20 + (i * texth);           //calcul de la position verticale
+   texth = textheight("XXX") + 1;				/* Taille de la police en pixels */
+   py = 20 + (i * texth);						/* Calcul de la position verticale */
 
    /* On converti les coordonnées en string avant d'afficher */
    sprintf_s(buff, "%2i:(%4d, %4d )", i+1, (int)cible.X, (int)cible.Y);
 
-   outtextxy(dimx + 10, py, buff);   //à droite de la route
+   outtextxy(dimx + 10, py, buff);				/* À droite de la route */
 }
 
 
@@ -279,27 +278,27 @@ char * saisie_nomF()
    outtextxy(px, 15, "Quel est le fichier texte ? ");
    px += textwidth("Quel est le fichier texte ? ");   //position de départ de la saisie
 
-   /* tant que l'on a pas reçu la touche <ENTER> lire les lettres de la chaîne */
+   /* Tant que l'on a pas reçu la touche <ENTER> lire les lettres de la chaîne */
 	do {
 		ch = getch();
 		switch (ch) {
-			case BKSPACE :   //enlever une lettre de la chaîne
+			case BKSPACE :   /* Enlever une lettre de la chaîne */
 					if (l) { 
 						--l;  nomF[l] = '\0';
 						px-=16;
-						bar(px, 15, px+20, 31);   //effacer derniere lettre
+						bar(px, 15, px+20, 31);   /* Effacer derniere lettre */
 					}
 					break;
 
-			case RETURN  : fini = 1;   //fin de la saisie
+			case RETURN  : fini = 1;   /* Fin de la saisie */
 					break;
 
-			default :                  //ajouter une lettre a la chaine
+			default :                  /* Ajouter une lettre a la chaine */
 					if (l<MAXL) {
 						nomF[l] = ch;  
 						l++;  nomF[l] = '\0';
 						buff[0] = ch;
-						outtextxy(px, 15, buff);   //afficher la lettre
+						outtextxy(px, 15, buff);   /* Afficher la lettre */
 						px+=16;
 					}
 		}
@@ -319,12 +318,12 @@ char * saisie_nomF()
 /*****************************************************************************/
 int saisie_touche(char *ch)
 { 
-  if (kbhit()) {            //si on a détecté une touche-clavier..
-    *ch = toupper(getch());   //la touche sera retournée en MAJUSCULES
+  if (kbhit()) {            /* Si on a détecté une touche-clavier... */
+    *ch = toupper(getch());   /* La touche sera retournée en MAJUSCULES */
 	return 1;
   }
 
-  return 0;   //aucune touche détectée
+  return 0;   /* Aucune touche détectée */
 }
 
 

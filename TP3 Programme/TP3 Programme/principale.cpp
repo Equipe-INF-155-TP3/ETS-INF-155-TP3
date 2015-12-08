@@ -1,20 +1,20 @@
   //********************##############################************************/
- //*********************#  Présentation du programe  #***********************/
+ //*********************#  Présentation du programme  #***********************/
 //**********************##############################**********************/
 /*
     Titre: La voiture intelligente autoguidée
 
 	Auteurs:
 		- Philippe La Madeleine -LAMP21099204
-		- //////////////  écriver votre nom et votre code permanent ici  ///////////////
-		- //////////////  écriver votre nom et votre code permanent ici  ///////////////
+		- Clarence Dupuis		-DUPC24069502
+		- Régis Villeneuve		-VILR12039501
 
 	Cours: INF-155
 
 	Groupe: 2
 
-	Objectif:	Programer une voiture qui suivras un parcour prédéfini a 
-				travest un environement simulé en évitant les colision avec
+	Objectif:	Programmer une voiture qui suivra un parcours prédéfini a 
+				travers un environnement simulé en évitant les collisions avec
 				des obstacles dynamiques.
 				
 
@@ -85,13 +85,13 @@
 #include "t_auto.h"
 #include "t_obstacles.h"
 
-#define RAFRAICHISSEMENT 50	//ms
+#define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
 #define PREMIER_POINT 0
 #define CHOIX_POSSIBLES "DNQ"
 
 
   //******************##################################**********************/
- //*******************#  Fonction: Entrée du programe  #*********************/
+ //*******************#  Fonction: Entrée du programme  #*********************/
 //********************##################################********************/
 int main()
 {
@@ -119,7 +119,7 @@ int main()
 
 	do{
 
-		//vérifier si une touche a été appuillé.
+		/* Vérifier si une touche a été appuyée */
 		if ( saisie_touche(&ch) ){
 			for(i=0;CHOIX_POSSIBLES[i];i++){
 				if (CHOIX_POSSIBLES[i] == ch)
@@ -136,30 +136,31 @@ int main()
 					detruire_chemin(&route, &chemin);
 					chemin_charge = 0;
 				}
-				// Saisir le nom de fichier.
+				/* Saisir le nom de fichier */
 				nomF = saisie_nomF();
-				//nomF = "haunted_house.txt";
+
+
 				effacer_ecran();
 
 
 
 				if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 				{
-					//Obtenir les données de la route et du chemin.
+					/* Obtenir les données de la route et du chemin */
 					obt_dim_route(&route, &dimx, &dimy);
 					nb_points = obt_nb_pts(&chemin);
 
-					//Créer la voiture et les obstacles.
+					/* Créer la voiture et les obstacles */
 					voiture = init_auto(depart, dir_depart);
 					dessiner_route(&route);
 					obstacles = creer_liste_obs( nb_obs, dimx, dimy );
 
-					//Obtenir et Afficher la première cible.
+					/* Obtenir et Afficher la première cible */
 					prochain_point = PREMIER_POINT;
 					cible = obt_pt( &chemin, prochain_point);
 					nb_points = obt_nb_pts(&chemin);
 
-					//Dessiner la voiture et obtenir des conditions initiales.
+					/* Dessiner la voiture et obtenir les conditions initiales */
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 					dist_precedente = dist(pos_ref, cible);
@@ -168,7 +169,7 @@ int main()
 					afficher_menu(dimy);
 					chemin_charge = 1;
 
-					//On réactive la boucle.
+					/* On réactive la boucle */
 					choix_menu = 0;
 				}
 
@@ -177,7 +178,7 @@ int main()
 
 				if (prochain_point < nb_points) {
 
-					//Calcul du comportement de la voiture.
+					/* Calcul du comportement de la voiture */
 					changer_acc_auto(&voiture, cible);
 					deplacer_auto(&voiture);
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
@@ -196,23 +197,26 @@ int main()
 					dist_precedente = distance;
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 
-					//Calcul du comportement des obstacles.
+					/* Calcul du comportement des obstacles */
 					deplacer_obs( &obstacles, dimx, dimy );
 
 
-					//effacer et redessiner le monde.
+					/* Effacer et redessiner le trajet */
 					effacer_route(dimx, dimy);
 					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 					dessiner_route(&route);
-					//dessiner_chemin(&chemin);
+
+					/* dessiner_chemin(&chemin) */
+
 					afficher_obs(&obstacles);
 
 					afficher_menu(dimy);
-					//Pause pour limiter la vitesse d'éxécution.
+
+					/* Pause pour limiter la vitesse d'éxécution */
 					delai(RAFRAICHISSEMENT);
 
 
-				}//Fin de la boucle de simulation.
+				}/* Fin de la boucle de simulation */
 
 
 

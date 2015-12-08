@@ -16,7 +16,7 @@ static int detecter_obs(const t_auto *navette){
 			couleur = detecter_pixel(point);
 			//dessiner_rond(point, AUTO);
 			if ( couleur != AUTO && couleur != NOIR ){
-				printf("atention!  Pouet Pouet!");
+				//printf("atention!  Pouet Pouet!\n");
 				//dessiner_rond(point, 2);
 				return 1;
 			}

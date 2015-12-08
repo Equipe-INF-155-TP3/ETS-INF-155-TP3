@@ -107,9 +107,9 @@ void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy){
 	for(i=0; i<obstacles->nombre; i++){
 		obs = &obstacles->obstacles[i];
 		if (detecter_auto(obs)){
-			if (obs->velocite.X < obs->velocite.Y){
-				obs->velocite.Y *= SURPRISE_FORT;
+			if (abs(obs->velocite.X) < abs(obs->velocite.Y)){
 				obs->velocite.X *= SURPRISE_FAIBLE;
+				obs->velocite.Y *= SURPRISE_FORT;
 			}
 			else{
 				obs->velocite.X *= SURPRISE_FORT;

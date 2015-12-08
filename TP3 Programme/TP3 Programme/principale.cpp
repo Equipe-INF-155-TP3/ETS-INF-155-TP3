@@ -85,9 +85,10 @@
 #include "t_auto.h"
 #include "t_obstacles.h"
 
-#define RAFRAICHISSEMENT 50	//ms
+#define RAFRAICHISSEMENT 0	//ms
 #define PREMIER_POINT 0
-#define CHOIX_POSSIBLES "DNQ"
+#define CHOIX_POSSIBLES "DN"
+#define ECHAP 27
 
 
   //******************##################################**********************/
@@ -121,10 +122,13 @@ int main()
 
 		//vérifier si une touche a été appuillé.
 		if ( saisie_touche(&ch) ){
-			for(i=0;CHOIX_POSSIBLES[i];i++){
-				if (CHOIX_POSSIBLES[i] == ch)
-					choix_menu = toupper(ch);
-			}
+			if (ch == ECHAP)
+				choix_menu = ECHAP;
+			else
+				for(i=0;CHOIX_POSSIBLES[i];i++){
+					if (CHOIX_POSSIBLES[i] == ch)
+						choix_menu = toupper(ch);
+				}
 		}
 
 		//choix_menu = choisir_menu("NDQ");
@@ -169,7 +173,7 @@ int main()
 					chemin_charge = 1;
 
 					//On réactive la boucle.
-					choix_menu = 0;
+					choix_menu = ECHAP;
 				}
 
 			break;
@@ -189,7 +193,7 @@ int main()
 							distance = dist(pos_ref, cible);
 							afficher_pos(cible,prochain_point,dimx);
 						}else{
-							choix_menu = 0;
+							choix_menu = ECHAP;
 						}
 
 					}
@@ -204,7 +208,6 @@ int main()
 					effacer_route(dimx, dimy);
 					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 					dessiner_route(&route);
-					//dessiner_chemin(&chemin);
 					afficher_obs(&obstacles);
 
 					afficher_menu(dimy);
@@ -217,13 +220,27 @@ int main()
 
 
 			break;
-			case 'Q':
-				//detruire_route();
-				//////////////////////////
+
+			case ECHAP:
+
+
+			saisie_touche(&ch);
+			if (ch == 'Q')
+				choix_menu = 'Q';
+		
+				saisie_touche(&ch);
+				saisie_touche(&ch);
+
+
 			break;
 		}
 
-	} while(1);
+	} while(choix_menu!='Q');
+
+	if (chemin_charge){
+		detruire_chemin(&route, &chemin);
+		chemin_charge = 0;
+	}
 
 	fermer_graphique();
 

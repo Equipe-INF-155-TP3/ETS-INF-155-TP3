@@ -90,6 +90,19 @@
 #define CHOIX_POSSIBLES "DN"
 #define ECHAP 27
 
+static void choisir_menu( char *choix ){
+	char ch, i;
+	if ( saisie_touche(&ch) ){
+		if (ch == ECHAP)
+			*choix = ECHAP;
+		else
+			for(i=0;CHOIX_POSSIBLES[i];i++){
+				if (CHOIX_POSSIBLES[i] == ch)
+					*choix = toupper(ch);
+			}
+		}
+}
+
 
   //******************##################################**********************/
  //*******************#  Fonction: Entrée du programme  #*********************/
@@ -118,18 +131,11 @@ int main()
 
 	initialiser_graphique();
 
+
 	do{
 
 		/* Vérifier si une touche a été appuyée */
-		if ( saisie_touche(&ch) ){
-			if (ch == ECHAP)
-				choix_menu = ECHAP;
-			else
-				for(i=0;CHOIX_POSSIBLES[i];i++){
-					if (CHOIX_POSSIBLES[i] == ch)
-						choix_menu = toupper(ch);
-				}
-		}
+		choisir_menu(&choix_menu);
 
 		//choix_menu = choisir_menu("NDQ");
 		switch (choix_menu) {
@@ -138,15 +144,16 @@ int main()
 				effacer_ecran();
 				if (chemin_charge){
 					detruire_chemin(&route, &chemin);
-					chemin_charge = 0;
+					chemin_charge = 0; /* Drapeau indiquant qu'un chemin est chargé.*/
 				}
+
 				/* Saisir le nom de fichier */
 				nomF = saisie_nomF();
 
 
 				effacer_ecran();
-
-
+				
+				
 
 				if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 				{
@@ -155,22 +162,10 @@ int main()
 					nb_points = obt_nb_pts(&chemin);
 
 					/* Créer la voiture et les obstacles */
-					voiture = init_auto(depart, dir_depart);
 					dessiner_route(&route);
-					obstacles = creer_liste_obs( nb_obs, dimx, dimy );
-
-					/* Obtenir et Afficher la première cible */
-					prochain_point = PREMIER_POINT;
-					cible = obt_pt( &chemin, prochain_point);
-					nb_points = obt_nb_pts(&chemin);
-
-					/* Dessiner la voiture et obtenir les conditions initiales */
-					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
-					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
-					dist_precedente = dist(pos_ref, cible);
-					afficher_pos(cible,prochain_point,dimx);
-
+					dessiner_chemin(&chemin);
 					afficher_menu(dimy);
+
 					chemin_charge = 1;
 
 					/* On réactive la boucle */
@@ -180,7 +175,22 @@ int main()
 			break;
 			case 'D':
 
-				if (prochain_point < nb_points) {
+				/* Créer la voiture et les obstacles */
+				voiture = init_auto(depart, dir_depart);
+				dessiner_route(&route);
+				obstacles = creer_liste_obs( nb_obs, dimx, dimy );
+
+				/* Obtenir et Afficher la première cible */
+				prochain_point = PREMIER_POINT;
+				cible = obt_pt( &chemin, prochain_point);
+				nb_points = obt_nb_pts(&chemin);
+
+				/* Dessiner la voiture et obtenir les conditions initiales */
+				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
+				dist_precedente = dist(pos_ref, cible);
+
+
+				while (choix_menu == 'D'){
 
 					/* Calcul du comportement de la voiture */
 					changer_acc_auto(&voiture, cible);
@@ -188,16 +198,14 @@ int main()
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 
 					distance = dist(pos_ref, cible);
-					if (2*distance < LARG && distance > dist_precedente ){
+					if (2*distance < LARG && distance > dist_precedente )
 						if (prochain_point < nb_points-1){
 							cible = obt_pt( &chemin, ++prochain_point);
 							distance = dist(pos_ref, cible);
 							afficher_pos(cible,prochain_point,dimx);
-						}else{
+						}else
 							choix_menu = ECHAP;
-						}
-
-					}
+					
 					dist_precedente = distance;
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 
@@ -218,23 +226,18 @@ int main()
 					/* Pause pour limiter la vitesse d'éxécution */
 					delai(RAFRAICHISSEMENT);
 
+					/* Vérifier si une touche a été appuyée */
+					choisir_menu(&choix_menu);
 
 				}/* Fin de la boucle de simulation */
-
-
 
 			break;
 
 			case ECHAP:
 
-
-			saisie_touche(&ch);
-			if (ch == 'Q')
-				choix_menu = 'Q';
-		
 				saisie_touche(&ch);
-				saisie_touche(&ch);
-
+				if (ch == 'Q')
+					choix_menu = 'Q';
 
 			break;
 		}

@@ -132,9 +132,7 @@ int main()
 
 
 	initialiser_graphique();
-	do{
-		saisie_touche(&ch);
-	} while(ch);
+
 
 
 

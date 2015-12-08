@@ -206,18 +206,18 @@ void afficher_menu(int dimy)
 {  int px = 20;
 
    setfillstyle(SOLID_FILL, RED);
-   bar(0, dimy + 8, 1202, dimy + 40);   //barre rouge pour la couleur de fond
+   bar(0, dimy + 8, 1202, dimy + 40);   /* Barre rouge pour la couleur de fond */
 
    setcolor(WHITE);
    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
    outtextxy(px, dimy + 15, "(N)ouveau Fichier");
-   px += textwidth("(N)ouveau Fichier") + 20;         //décaler la position horiz.
+   px += textwidth("(N)ouveau Fichier") + 20;         /* Décaler la position horiz */
 
    outtextxy(px, dimy + 15, "(D)emarrer Auto");
-   px += textwidth("(D)emarrer auto") + 20;           //décaler la position horiz.
+   px += textwidth("(D)emarrer auto") + 20;           /* Décaler la position horiz */
 
    outtextxy(px, dimy + 15, "(ESC) Annuler Simulation");
-   px += textwidth("(ESC) Annuler Simulation") + 20;  //décaler la position horiz.
+   px += textwidth("(ESC) Annuler Simulation") + 20;  /* Décaler la position horiz */
 
    outtextxy(px, dimy + 15, "(Q)uitter");
 }
@@ -268,7 +268,7 @@ void effacer_ecran()
 char * saisie_nomF()
 {  int px=10, l = 0, fini = 0;;
    char ch, buff[2]={0, 0};
-   static char nomF[MAXL] = {0};   //chaîne de la saisie
+   static char nomF[MAXL] = {0};   /* Chaîne de la saisie */
 
    /* Nettoyage de l'écran et afficher la question */
    effacer_ecran();
@@ -276,7 +276,7 @@ char * saisie_nomF()
    setfillstyle(SOLID_FILL, BLACK);
    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
    outtextxy(px, 15, "Quel est le fichier texte ? ");
-   px += textwidth("Quel est le fichier texte ? ");   //position de départ de la saisie
+   px += textwidth("Quel est le fichier texte ? ");   /* Position de départ de la saisie */
 
    /* Tant que l'on a pas reçu la touche <ENTER> lire les lettres de la chaîne */
 	do {

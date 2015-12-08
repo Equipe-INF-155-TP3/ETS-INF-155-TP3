@@ -17,11 +17,11 @@
   LES CONSTANTES-COULEURS
 **************************/
 
-#define  MAX_COULEUR	15		//indice de couleur le plus élevé.
-#define  NOIR			0       //un espace libre (noir)
-#define  LIGNE			15      //une ligne (blanc)
-#define  POINT			4       //un point-cible (rouge)
-#define  AUTO			1       //une auto (bleu)
+#define  MAX_COULEUR	15		/*  Indice de couleur le plus élevé. */
+#define  NOIR			0		/*	Un espace libre (noir) */
+#define  LIGNE			15		/*	Une ligne (blanc) */
+#define  POINT			4		/*	Un point-cible (rouge) */
+#define  AUTO			1		/*	Une auto (bleu) */
 
 #define DEMI_PI atan(1.0)*2
 #define PI DEMI_PI*2

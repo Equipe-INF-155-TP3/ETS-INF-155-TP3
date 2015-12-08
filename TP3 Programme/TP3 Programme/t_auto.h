@@ -22,21 +22,21 @@
 	#define FREIN	-0.7
 	#define PRUDENCE 0.3
 
-	#define DIST_VIS_VOIT	30 //Distance de vision de la voiture.
-	#define PAS_VIS_VOIT	10  //Pas de test de vision de la voiture.
+	#define DIST_VIS_VOIT	30  /* Distance de vision de la voiture */
+	#define PAS_VIS_VOIT	10  /* Pas de test de vision de la voiture */
 
-	#define DEMI_CHP_VIS_VOIT	DEMI_PI		//La moitié du champ de vision total de la voiture.
-	#define PAS_CHP_VIS_VOIT	3.0/90.0*DEMI_PI //Pas angulaire de test de vision de la voiture.
+	#define DEMI_CHP_VIS_VOIT	DEMI_PI				/* La moitié du champ de vision total de la voiture */
+	#define PAS_CHP_VIS_VOIT	3.0/90.0*DEMI_PI	/* Pas angulaire de test de vision de la voiture */
 
-	typedef struct{						//Enregistrement des infos sur l'auto
-	  t_pt2d	acc;					//vecteur accélération
-	  t_pt2d	vel;					//vecteur vitesse
-	  t_pt2d	position;				//position de l'oeil (point de référence)
-	  int		longueur, largeur;		//dimensions de l'auto
-	  t_pt2d	supG, supD, infG, infD;	//coordonnées des 4 coins de l'auto (pour afficher)
-	  double	dir;					//angle de direction (en radians)
-	  int		attente;				//booléen pour indiquer si l'auto attends
-										//le passage d'un piéton
+	typedef struct{						/* Enregistrement des infos sur l'auto */
+	  t_pt2d	acc;					/* Vecteur accélération	*/
+	  t_pt2d	vel;					/* Vecteur vitesse */
+	  t_pt2d	position;				/* Position de l'oeil (point de référence) */
+	  int		longueur, largeur;		/* Dimensions de l'auto */
+	  t_pt2d	supG, supD, infG, infD;	/* Coordonnées des 4 coins de l'auto (pour afficher) */
+	  double	dir;					/* Angle de direction (en radians)			 */
+	  int		attente;				/* Booléen pour indiquer si l'auto attends	*/
+										/* Le passage d'un piéton */
 	} t_auto;
 
 

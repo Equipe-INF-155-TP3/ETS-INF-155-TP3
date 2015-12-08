@@ -23,7 +23,7 @@ static int detecter_auto(const t_obstacle *obs){
 		decal = (i / 2);
 		p.X = p3.X + dy*decal;
 		p.Y = p3.Y - dx*decal;
-		//dessiner_rond(p, obs->couleur); // Pour déboguage
+
 		if (detecter_pixel(p) == AUTO)
 			return 1;
 	}

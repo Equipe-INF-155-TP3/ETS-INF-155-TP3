@@ -14,10 +14,10 @@ static int detecter_obs(const t_auto *navette){
 			point.X = navette->position.X+distance*cos(angle-navette->dir+DEMI_PI);
 			point.Y = navette->position.Y+distance*sin(angle-navette->dir+DEMI_PI);
 			couleur = detecter_pixel(point);
-			//dessiner_rond(point, AUTO);
+
+
 			if ( couleur != AUTO && couleur != NOIR ){
-				/* printf("attention!  Pouet Pouet!\n"); */
-				/* dessiner_rond(point, 2); */
+
 				return 1;
 			}
 		}
@@ -150,7 +150,7 @@ void deplacer_auto(t_auto *navette){
 
 	vitesse = sqrt(  navette->vel.X*navette->vel.X
 					 +navette->vel.Y*navette->vel.Y );
-	if (vitesse > MAXVEL){//On normalise la vitesse.
+	if (vitesse > MAXVEL){					/* On normalise la vitesse */
 		navette->vel.X *= MAXVEL/vitesse;
 		navette->vel.Y *= MAXVEL/vitesse;
 	}

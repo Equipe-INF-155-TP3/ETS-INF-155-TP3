@@ -21,21 +21,16 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	if (fichier == NULL)
 		return 0;
 
-	fscanf(fichier,"%d %d\n", &(route->dimx), &(route->dimy));
+	fscanf(fichier, "%d %d\n", &(route->dimx), &(route->dimy));				/* Lecture première lignes pour les dimensions de route */
 	fscanf(fichier,"%d\n", &(route->nb_lignes));
-	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne));
+	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne)); /* Allocation dynamique */
 
 	for (i = 0; i < (route->nb_lignes); i++){
 
-		/* fscanf(fichier,"%d %d %d %d\n",	&(route->liste_lignes[i].ptA.X),
-											&(route->liste_lignes[i].ptA.Y),
-											&(route->liste_lignes[i].ptB.X),
-											&(route->liste_lignes[i].ptB.Y)); */
-
-		fscanf(fichier, "%lf",	&route->liste_lignes[i].ptA.X);
-		fscanf(fichier, "%lf",	&route->liste_lignes[i].ptA.Y);
-		fscanf(fichier, "%lf",	&route->liste_lignes[i].ptB.X);
-		fscanf(fichier, "%lf\n", &route->liste_lignes[i].ptB.Y);
+		fscanf(fichier, "%lf %lf %lf %lf\n", &(route->liste_lignes[i].ptA.X), /* Lecture du fichier et remplir tableaux position*/
+											 &(route->liste_lignes[i].ptA.Y),
+											 &(route->liste_lignes[i].ptB.X),
+											 &(route->liste_lignes[i].ptB.Y));
 	}
 
 	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);
@@ -59,10 +54,10 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 
 double dist(t_pt2d p1, t_pt2d p2){
 
-	double dx, dy; /* Déclaration des variables */
+	double dx, dy;			/* Déclaration des variables */
 
-	dx = (p2.X) - (p1.X); /* Calcul de la différence en X */
-	dy = (p2.Y) - (p1.Y); /* Calcul de la différence en Y */
+	dx = (p2.X) - (p1.X);	/* Calcul de la différence en X */
+	dy = (p2.Y) - (p1.Y);	/* Calcul de la différence en Y */
 	
 	return sqrt(dx*dx+dy*dy);  /* Application du théorème de Pythagore */
 }

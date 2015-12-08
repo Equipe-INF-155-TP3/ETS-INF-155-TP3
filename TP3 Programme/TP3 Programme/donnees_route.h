@@ -16,23 +16,23 @@
 /******************************************************************************/
 /*                       Déclaration des types                                */
 /******************************************************************************/
-typedef struct {             //Enregistrement d'un point
+typedef struct {             /* Enregistrement d'un point */
 	double X, Y;
 } t_pt2d;
 
-typedef struct {             //Enregistrement d'une ligne 
-	t_pt2d ptA, ptB;            //extrémité A et B d'une ligne
+typedef struct {             /* Enregistrement d'une ligne     */
+	t_pt2d ptA, ptB;		 /*	  Extrémité A et B d'une ligne */
 } t_ligne;
 
-typedef struct {             //Enregistrement de la route 
-  int      dimx, dimy;         //taille en unités de la route
-  t_ligne *liste_lignes;       //liste dynamique des lignes
-  int      nb_lignes;          //le nombre de lignes dans la liste
+typedef struct {             /* Enregistrement de la route */
+  int      dimx, dimy;		 /*		Taille en unités de la route */
+  t_ligne *liste_lignes;	 /*		Liste dynamique des lignes   */
+  int      nb_lignes;		 /*		Le nombre de lignes dans la liste */
 } t_route;
 
-typedef struct{              //Enregistrement du chemin à suivre 
-	t_pt2d *liste_pts;          //liste dynamique des points
-	int     nb_pts;             //le nombre de points dans la liste
+typedef struct{              /* Enregistrement du chemin à suivre */
+	t_pt2d *liste_pts;		 /*		Liste dynamique des points    */
+	int     nb_pts;			 /*		Le nombre de points dans la liste */
 } t_chemin;
 
 /******************************************************************************

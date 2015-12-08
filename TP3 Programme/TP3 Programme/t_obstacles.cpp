@@ -13,8 +13,8 @@ static int detecter_auto(const t_obstacle *obs){
 	dx = obs->velocite.X;
 	dy = obs->velocite.Y;
 	vel = sqrt(dx*dx + dy*dy);
-	dx *= CHAMP_VISION / vel; //Normalisation du vecteur
-	dy *= CHAMP_VISION / vel; //
+	dx *= CHAMP_VISION / vel; /* Normalisation des vecteurs */
+	dy *= CHAMP_VISION / vel; 
 
 	p3.X = (obs->position.X + dx);
 	p3.Y = (obs->position.Y + dy);
@@ -43,7 +43,7 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
 	double vel, dir;
 	t_obstacle *obs;
 	liste.obstacles	= (t_obstacle *)malloc(sizeof(t_obstacle)*nb_obs);
-	if (liste.obstacles == NULL){//si l'alocation s'est bien déroulé.
+	if (liste.obstacles == NULL){	/* Si l'allocation s'est bien déroulé */
 		liste.nombre = 0;
 	} else {
 		liste.nombre = nb_obs;
@@ -52,19 +52,19 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
 		for (i=0; i<liste.nombre; i++){
 			obs = &liste.obstacles[i];
 			do{
-				//On positionne les obstacles à au moin 5 pixel des bordures.
+				/* On positionne les obstacles à au moins 5 pixels des bordures */
 				obs->position.X = rand() % (dimx - 2 * DIST_MIN) + DIST_MIN;
 				obs->position.Y = rand() % (dimy - 2 * DIST_MIN) + DIST_MIN;
 			} while (detecter_auto(obs)); // 
 
-			////On calcule une vélocité aléatoire.
+			/* On calcule une vélocité aléatoire */
 			obs->velocite.X = (rand()%1000)*0.001*(VEL_MAX-VEL_MIN)+VEL_MIN;
 			obs->velocite.Y = (rand()%1000)*0.001*(VEL_MAX-VEL_MIN)+VEL_MIN;
 			if (rand()%2) obs->velocite.X *= -1;
 			if (rand()%2) obs->velocite.Y *= -1;
 
 
-			//On applique la couleur aléatoire
+			/* On applique la couleur aléatoire */
 			do obs->couleur = rand()%MAX_COULEUR;
 			while (obs->couleur == NOIR
 					|| obs->couleur == AUTO
@@ -121,11 +121,11 @@ void deplacer_obs(t_liste_obs *obstacles, int dimx, int dimy){
 		}
 		;
 
-		//On met à jours la position.
+		/* Mise à jour de la position */
 		obs->position.X += obs->velocite.X;
 		obs->position.Y += obs->velocite.Y;
 
-		//On vérifie les bordures.
+		/* Vérification des bordures */
 		if (obs->position.X < DIST_MIN || obs->position.X > dimx-DIST_MIN)
 			obs->velocite.X *= COLLISION_MUR;
 		if (obs->position.Y < DIST_MIN || obs->position.Y > dimy-DIST_MIN)

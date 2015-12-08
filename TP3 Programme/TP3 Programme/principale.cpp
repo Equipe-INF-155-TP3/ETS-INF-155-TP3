@@ -90,6 +90,8 @@
 #define CHOIX_POSSIBLES "DN"
 #define ECHAP 27
 
+
+
 static void choisir_menu( char *choix ){
 	char ch, i;
 	if ( saisie_touche(&ch) ){
@@ -98,7 +100,7 @@ static void choisir_menu( char *choix ){
 		else
 			for(i=0;CHOIX_POSSIBLES[i];i++){
 				if (CHOIX_POSSIBLES[i] == ch)
-					*choix = toupper(ch);
+					*choix = ch;
 			}
 		}
 }
@@ -130,6 +132,10 @@ int main()
 
 
 	initialiser_graphique();
+	do{
+		saisie_touche(&ch);
+	} while(ch);
+
 
 
 	do{

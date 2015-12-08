@@ -98,16 +98,17 @@ void dessiner_chemin(const t_chemin *chemin)
 	char buff[80];
 	char msg[20];
 
-	setcolor(POINT);					/* On veut des points rouge */
+					
 	setfillstyle(SOLID_FILL, POINT);	/* Couleur du remplissage */
 
 	for (i = 0; i < chemin->nb_pts; i++)
 	{
+		setcolor(POINT);						/* On veut des points rouge */
 		circle(chemin->liste_pts[i].X, 			/* Cercle avec coordonnée (X,Y) avec rayon POINT */
 			   chemin->liste_pts[i].Y, POINT); 
 		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); /* Remplissage du cercle */
 
-		
+		setcolor(LIGNE);		/* Écriture des numéros en blanc*/
 		itoa(i + 1, buff, 10);													/* Conversion de i en string, on débute à #1 donc +1 */
 		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   /* Écriture du numéro de point à coté */
 	}

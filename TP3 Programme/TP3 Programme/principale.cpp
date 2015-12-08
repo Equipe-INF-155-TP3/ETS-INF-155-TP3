@@ -137,7 +137,6 @@ int main()
 		/* Vérifier si une touche a été appuyée */
 		choisir_menu(&choix_menu);
 
-		//choix_menu = choisir_menu("NDQ");
 		switch (choix_menu) {
 			case 'N':
 

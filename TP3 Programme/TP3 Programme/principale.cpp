@@ -1,24 +1,24 @@
-  //********************##############################************************/
- //*********************#  PrÈsentation du programme  #***********************/
+Ôªø  //********************##############################************************/
+ //*********************#  Pr√©sentation du programme  #***********************/
 //**********************##############################**********************/
 /*
-    Titre: La voiture intelligente autoguidÈe
+    Titre: La voiture intelligente autoguid√©e
 
 	Auteurs:
 		- Philippe La Madeleine -LAMP21099204
 		- Clarence Dupuis		-DUPC24069502
-		- RÈgis Villeneuve		-VILR12039501
+		- R√©gis Villeneuve		-VILR12039501
 
 	Cours: INF-155
 
 	Groupe: 2
 
-	Objectif:	Programmer une voiture qui suivra un parcours prÈdÈfini a 
-				travers un environnement simulÈ en Èvitant les collisions avec
+	Objectif:	Programmer une voiture qui suivra un parcours pr√©d√©fini a 
+				travers un environnement simul√© en √©vitant les collisions avec
 				des obstacles dynamiques.
 				
 
-	Liste des fonctions rÈdigÈes:
+	Liste des fonctions r√©dig√©es:
 
 		* Module principale
 			- main
@@ -68,11 +68,13 @@
 		* Module WINBGIM
 
 		
-	Date de crÈation: 6 novembre 2015
+	Date de cr√©ation: 6 novembre 2015
 
 */
 
-
+  //********************###############################***********************/
+ //*********************#  Inclure les biblioth√®ques  #**********************/
+//**********************###############################*********************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -81,34 +83,34 @@
 #include <conio.h>
 #include <windows.h>
 
-
 #include "t_auto.h"
 #include "t_obstacles.h"
 
 #define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
 #define PREMIER_POINT 0
-#define CHOIX_POSSIBLES "DN"
-#define ECHAP 27
+
+#define CHOIX_POSSIBLES "DN\033"//'\033' est pour echap.
+#define ECHAP '\033'
 
 
-
+  //**********************############################************************/
+ //***********************#  Fonction: choisir_menu  #***********************/
+//************************############################**********************/
 static void choisir_menu( char *choix ){
 	char ch, i;
 	if ( saisie_touche(&ch) ){
-		if (ch == ECHAP)
-			*choix = ECHAP;
-		else
-			for(i=0;CHOIX_POSSIBLES[i];i++){
-				if (CHOIX_POSSIBLES[i] == ch)
-					*choix = ch;
-			}
+		for(i=0;CHOIX_POSSIBLES[i];i++){
+			if (CHOIX_POSSIBLES[i] == ch)
+				*choix = ch;
 		}
+		printf("touche : %c\n",ch);
+	}
 }
 
 
-  //******************##################################**********************/
- //*******************#  Fonction: EntrÈe du programme  #*********************/
-//********************##################################********************/
+  //******************###################################*********************/
+ //*******************#  Fonction: Entr√©e du programme  #********************/
+//********************###################################*******************/
 int main()
 {
 
@@ -138,7 +140,7 @@ int main()
 
 	do{
 
-		/* VÈrifier si une touche a ÈtÈ appuyÈe */
+		/* V√©rifier si une touche a √©t√© appuy√©e */
 		choisir_menu(&choix_menu);
 
 		switch (choix_menu) {
@@ -147,7 +149,7 @@ int main()
 				effacer_ecran();
 				if (chemin_charge){
 					detruire_chemin(&route, &chemin);
-					chemin_charge = 0; /* Drapeau indiquant qu'un chemin est chargÈ.*/
+					chemin_charge = 0; /* Drapeau indiquant qu'un chemin est charg√©.*/
 				}
 
 				/* Saisir le nom de fichier */
@@ -160,30 +162,35 @@ int main()
 
 				if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 				{
-					/* Obtenir les donnÈes de la route et du chemin */
+					/* Obtenir les donn√©es de la route et du chemin */
 					obt_dim_route(&route, &dimx, &dimy);
 					nb_points = obt_nb_pts(&chemin);
 
-					/* CrÈer la voiture et les obstacles */
+					/* Cr√©er la voiture et les obstacles */
 					dessiner_route(&route);
 					dessiner_chemin(&chemin);
 					afficher_menu(dimy);
 
 					chemin_charge = 1;
 
-					/* On rÈactive la boucle */
+					/* On r√©active la boucle */
 					choix_menu = ECHAP;
+				} else {
+					printf("Impossible d'ouvrir le fichier \"%s\"\n", nomF);
+					choix_menu = 'Q';
+					fermer_graphique();
+					system("pause");
 				}
 
 			break;
 			case 'D':
 
-				/* CrÈer la voiture et les obstacles */
+				/* Cr√©er la voiture et les obstacles */
 				voiture = init_auto(depart, dir_depart);
 				dessiner_route(&route);
 				obstacles = creer_liste_obs( nb_obs, dimx, dimy );
 
-				/* Obtenir et Afficher la premiËre cible */
+				/* Obtenir et Afficher la premi√®re cible */
 				prochain_point = PREMIER_POINT;
 				cible = obt_pt( &chemin, prochain_point);
 				nb_points = obt_nb_pts(&chemin);
@@ -191,7 +198,7 @@ int main()
 				/* Dessiner la voiture et obtenir les conditions initiales */
 				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 				dist_precedente = dist(pos_ref, cible);
-
+				
 
 				while (choix_menu == 'D'){
 
@@ -226,10 +233,10 @@ int main()
 
 					afficher_menu(dimy);
 
-					/* Pause pour limiter la vitesse d'ÈxÈcution */
+					/* Pause pour limiter la vitesse d'√©x√©cution */
 					delai(RAFRAICHISSEMENT);
 
-					/* VÈrifier si une touche a ÈtÈ appuyÈe */
+					/* V√©rifier si une touche a √©t√© appuy√©e */
 					choisir_menu(&choix_menu);
 
 				}/* Fin de la boucle de simulation */
@@ -239,9 +246,10 @@ int main()
 			case ECHAP:
 
 				saisie_touche(&ch);
-				if (ch == 'Q')
+				if (ch == 'Q'){
 					choix_menu = 'Q';
-
+					fermer_graphique();
+				}
 			break;
 		}
 
@@ -252,9 +260,6 @@ int main()
 		chemin_charge = 0;
 	}
 
-	fermer_graphique();
 
-
-   	system("pause");
 	return EXIT_SUCCESS;
 }

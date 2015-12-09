@@ -3,24 +3,28 @@
   //***********************##########################*************************/
  //************************# Fonction: detecter_obs #************************/
 //*************************##########################***********************/
+/* Permet de détecter les obstacles devant la voiture. */
 static int detecter_obs(const t_auto *navette){
 
-	int couleur;
-	double distance, angle;
-	t_pt2d point;
-	double test = DEMI_PI;
-	double max = navette->largeur/2+30;
+	int couleur; // Permet de stoker l couleur du point testé.
+	double distance, angle; // Coordonées polaires du point à tester.
+	t_pt2d point; // Point à tester.
+	double max = navette->largeur/2+30; // Distance maximale à tester.
 
+	// Pour toute les distances.
 	for(distance = navette->largeur/2; distance <= max; distance += 15 ){
 
+		// Pour tout les angles entre -90 et 90.
 		for(angle = -DEMI_CHP_VIS_VOIT; angle <= DEMI_CHP_VIS_VOIT ; angle += PAS_CHP_VIS_VOIT ){
+
+			// On rectangulise les coordonéees polaires et on test la position.
 			point.X = navette->position.X+distance*cos(angle-navette->dir+DEMI_PI);
 			point.Y = navette->position.Y+distance*sin(angle-navette->dir+DEMI_PI);
 			couleur = detecter_pixel(point);
 
-
+			// Si la couleur est autre que celle de la voiture ou du font.
 			if ( couleur != AUTO && couleur != NOIR ){
-				return 1;
+				return 1; // On retourne 1.
 			}
 		}
 	}

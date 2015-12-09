@@ -11,6 +11,9 @@
 #define MODE_OUVERTURE "rt"
 #define RAD_A_DEG (3.14159/180)
 
+  //********************#############################************************/
+ //*********************#  Fonction: lire_fichier  #***********************/
+//**********************#############################**********************/
 
 
 int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_chemin *chemin, int *nb_obs){
@@ -64,6 +67,10 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 }
 
 
+  //********************#############################************************/
+ //*********************#  Fonction: dist  #***********************/
+//**********************#############################**********************/
+
 double dist(t_pt2d p1, t_pt2d p2){
 
 	double dx, dy;			/* Déclaration des variables */
@@ -74,10 +81,19 @@ double dist(t_pt2d p1, t_pt2d p2){
 	return sqrt(dx*dx+dy*dy);  /* Application du théorème de Pythagore */
 }
 
+  //********************#############################************************/
+ //*********************#  Fonction: detruire_chemin  #***********************/
+//**********************#############################**********************/
+
 void detruire_chemin(t_route *route, t_chemin *chemin){
 	free(chemin->liste_pts);
 	free(route->liste_lignes);
 }
+
+  //********************#############################************************/
+ //*********************#  Fonction: obt_pt  #***********************/
+//**********************#############################**********************/
+
 
 
 t_pt2d obt_pt(const t_chemin *chemin, int pos){
@@ -88,14 +104,28 @@ t_pt2d obt_pt(const t_chemin *chemin, int pos){
 		return chemin->liste_pts[pos];
 }
 
+  //********************#############################************************/
+ //*********************#  Fonction: obt_dim_route  #***********************/
+//**********************#############################**********************/
+
+
 void obt_dim_route(const t_route *route, int *dimx, int *dimy){
 	*dimx = route->dimx;
 	*dimy = route->dimy;
 }
 
+  //********************#############################************************/
+ //*********************#  Fonction: obt_nb_lignes  #***********************/
+//**********************#############################**********************/
+
+
 int obt_nb_lignes(const t_route *route){
 	return route->nb_lignes;
 }
+
+  //********************#############################************************/
+ //*********************#  Fonction: obt_nb_pts  #***********************/
+//**********************#############################**********************/
 
 int obt_nb_pts(const t_chemin *chemin){
 	return chemin->nb_pts;

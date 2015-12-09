@@ -72,9 +72,10 @@ void dessiner_route(const t_route *route)
 	xmax = route->dimx;   
 	ymax = route->dimy;
 
-	setcolor(LIGNE);						/* On veut des lignes blanches */
+	setcolor(LIGNE);					/* On veut des lignes blanches */
 
-	for (i = 0; i < route->nb_lignes; i++)	/* Dessiner route avec point A et B initial et point A et B final */
+	/* Dessiner route avec point A et B initial et point A et B final */
+	for (i = 0; i < route->nb_lignes; i++)	
 	{
 		line(route->liste_lignes[i].ptA.X,
 			 route->liste_lignes[i].ptA.Y,
@@ -102,14 +103,18 @@ void dessiner_chemin(const t_chemin *chemin)
 
 	for (i = 0; i < chemin->nb_pts; i++)
 	{
-		setcolor(POINT);						/* On veut des points rouge */
-		circle(chemin->liste_pts[i].X, 			/* Cercle avec coordonnée (X,Y) avec rayon POINT */
+		setcolor(POINT);					/* On veut des points rouge */
+		circle(chemin->liste_pts[i].X, 	/* Cercle avec coordonnée (X,Y) et rayon POINT */
 			   chemin->liste_pts[i].Y, POINT); 
-		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); /* Remplissage du cercle avec couleur de remplissage */
+
+		/* Remplissage du cercle avec couleur de remplissage */
+		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); 
 
 		setcolor(LIGNE);		/* Écriture des numéros en blanc*/
-		itoa(i + 1, buff, 10);										/* Conversion de i en string; on débute à #1 donc +1 */
-		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   /* Écriture du numéro de point à coté avec décalage de 15 */
+		itoa(i + 1, buff, 10);	/* Conversion de i en string; on débute à #1 donc +1 */
+
+		/* Écriture du numéro de point à coté avec décalage de 15 */
+		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   
 	}
 }
 
@@ -320,7 +325,6 @@ int saisie_touche(char *ch)
 { 
   if (kbhit()) {            /* Si on a détecté une touche-clavier... */
     *ch = toupper(getch());/* La touche sera retournée en MAJUSCULES */
-	printf("Touche Reelle %c\n", *ch);
 	return 1;
   }
 

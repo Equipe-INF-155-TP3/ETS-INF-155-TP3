@@ -29,12 +29,17 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 
 	/* LECTURE DONNEES POUR LA ROUTE */
 
-	fscanf(fichier, "%d %d\n", &(route->dimx), &(route->dimy));				/* Lecture première lignes pour les dimensions de route */
-	fscanf(fichier, "%d\n", &(route->nb_lignes));							/* Lecture pour le nombre de lignes*/
-	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne)); /* Allocation dynamique */
+	/* Lecture première lignes pour les dimensions de route */
+	fscanf(fichier, "%d %d\n", &(route->dimx), &(route->dimy));		
+
+	/* Lecture pour le nombre de lignes*/
+	fscanf(fichier, "%d\n", &(route->nb_lignes));							
+
+	/* Allocation dynamique */
+	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne)); 
 	assert(route->liste_lignes);	/* Vérification de l'allocation dynamique */
 
-	for (i = 0; i < (route->nb_lignes); i++){								 /* Lecture du fichier et remplissage des tableaux position*/
+	for (i = 0; i < (route->nb_lignes); i++){ /* Lecture du fichier et remplissage des tableaux position*/
 
 		fscanf(fichier, "%lf %lf %lf %lf\n", &(route->liste_lignes[i].ptA.X), 
 											 &(route->liste_lignes[i].ptA.Y),
@@ -42,7 +47,8 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 											 &(route->liste_lignes[i].ptB.Y));
 	}
 
-	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);		/* Lecture pour la position de départ de la voiture */
+	/* Lecture pour la position de départ de la voiture */
+	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);		
 	*dir_dep = dir_dep_deg*RAD_A_DEG;		/* Conversion des radians en degrés */
 
 
@@ -130,4 +136,3 @@ int obt_nb_lignes(const t_route *route){
 int obt_nb_pts(const t_chemin *chemin){
 	return chemin->nb_pts;
 }
-

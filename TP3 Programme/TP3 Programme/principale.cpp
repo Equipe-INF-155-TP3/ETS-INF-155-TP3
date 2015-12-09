@@ -202,7 +202,6 @@ int main()
 
 				/* Créer la voiture et les obstacles */
 				voiture = init_auto(depart, dir_depart);
-				dessiner_route(&route);
 				obstacles = creer_liste_obs( nb_obs, dimx, dimy );
 
 				/* Obtenir et Afficher la première cible */
@@ -219,7 +218,6 @@ int main()
 					/* Calcul du comportement de la voiture. */
 					changer_acc_auto(&voiture, cible);
 					deplacer_auto(&voiture);
-					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 
 					/* Détection de la proximité de la cible. */
 					distance = dist(pos_ref, cible);
@@ -230,7 +228,7 @@ int main()
 							afficher_pos(cible,prochain_point,dimx);
 						}else
 							choix_menu = ECHAP;
-					
+
 					dist_precedente = distance;
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 

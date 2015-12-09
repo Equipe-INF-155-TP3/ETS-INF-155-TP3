@@ -79,12 +79,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <string.h>
-#include <conio.h>
-#include <windows.h>
 
 #include "t_auto.h"
 #include "t_obstacles.h"
+
+
+
 
 #define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
 #define PREMIER_POINT 0
@@ -120,7 +120,7 @@ int main()
 	t_auto voiture;
 	t_pt2d pos_ref, supG, supD, infG, infD;
 	t_liste_obs  obstacles;
-	int nb_obs, dimx, dimy, i;
+	int nb_obs, dimx, dimy;
 	int chemin_charge = 0;
 
 	t_pt2d depart;

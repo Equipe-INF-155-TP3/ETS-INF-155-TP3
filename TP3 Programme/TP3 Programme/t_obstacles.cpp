@@ -4,7 +4,11 @@
   //************************###########################***********************/
  //*************************# Fonction: detecter_auto #**********************/
 //**************************###########################*********************/
+/* Permet de détecter la voiture.
+   retourne 1 si la voiture est détecté. */
 static int detecter_auto(const t_obstacle *obs){
+
+	/* Décal sert à décaler les points de tests de gauche à droite. */
 	double dx, dy, decal, i, vel;
 	t_pt2d  p3, p;
 	dx = obs->velocite.X;
@@ -13,9 +17,11 @@ static int detecter_auto(const t_obstacle *obs){
 	dx *= CHAMP_VISION / vel; /* Normalisation des vecteurs */
 	dy *= CHAMP_VISION / vel; 
 
+	/* Positionner le point central devant la voiture. */
 	p3.X = (obs->position.X + dx);
 	p3.Y = (obs->position.Y + dy);
 
+	/* Test des positions décalées. */
 	for (i = -LARG_VISION; i <= LARG_VISION; i++){
 		decal = (i / 2);
 		p.X = p3.X + dy*decal;

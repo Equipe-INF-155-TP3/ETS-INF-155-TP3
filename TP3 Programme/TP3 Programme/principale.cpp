@@ -102,15 +102,12 @@
 	avec une string recue en paramètre. */
 static void choisir_menu( char *choix , const char *possible ){
 	char ch, i;
+	/* Compare avec la string */
 	if ( saisie_touche(&ch) ){
-		printf("Nouvelle touche\n");
 		for(i=0;possible[i];i++){
-			printf("	test : %c\n",possible[i]);
-			if (possible[i] == ch){
+			if (possible[i] == ch)
 				*choix = ch;
-				printf("choix_menu : %c\n",*choix);}
 		}
-		printf("touche : %c\n",ch);
 	}
 }
 
@@ -143,7 +140,7 @@ int main()
 
 	/* Le choix_menu est initialisé à 'N' pour forcer 
 	   à choisir un fichier avant de commecer. */
-	char choix_menu = 'N', ch, *nomF;
+	char choix_menu = 'N', *nomF;
 
 	initialiser_graphique();
 

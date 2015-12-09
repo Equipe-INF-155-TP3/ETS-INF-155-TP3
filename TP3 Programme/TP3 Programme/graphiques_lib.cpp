@@ -4,7 +4,7 @@
 // Cette librairie contient les fonctions d'affichage en mode graphique.
 /******************************************************************************/
 
-#include "winbgim.h"
+#include "winBGIm.h"
 #include "graphiques_lib.h"
 #include <math.h>
 
@@ -96,7 +96,6 @@ void dessiner_chemin(const t_chemin *chemin)
 { 
 	int i;
 	char buff[80];
-	char msg[20];
 
 					
 	setfillstyle(SOLID_FILL, POINT);	/* Couleur du remplissage */
@@ -106,11 +105,11 @@ void dessiner_chemin(const t_chemin *chemin)
 		setcolor(POINT);						/* On veut des points rouge */
 		circle(chemin->liste_pts[i].X, 			/* Cercle avec coordonnée (X,Y) avec rayon POINT */
 			   chemin->liste_pts[i].Y, POINT); 
-		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); /* Remplissage du cercle */
+		floodfill(chemin->liste_pts[i].X, chemin->liste_pts[i].Y, POINT); /* Remplissage du cercle avec couleur de remplissage */
 
 		setcolor(LIGNE);		/* Écriture des numéros en blanc*/
-		itoa(i + 1, buff, 10);													/* Conversion de i en string, on débute à #1 donc +1 */
-		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   /* Écriture du numéro de point à coté */
+		itoa(i + 1, buff, 10);										/* Conversion de i en string; on débute à #1 donc +1 */
+		outtextxy(chemin->liste_pts[i].X + 15, chemin->liste_pts[i].Y, buff);   /* Écriture du numéro de point à coté avec décalage de 15 */
 	}
 }
 

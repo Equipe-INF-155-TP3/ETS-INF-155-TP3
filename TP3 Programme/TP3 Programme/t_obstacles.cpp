@@ -1,8 +1,5 @@
 #include "t_obstacles.h"
-
-
-
-
+#include <assert.h>
 
   //************************###########################***********************/
  //*************************# Fonction: detecter_auto #**********************/
@@ -42,7 +39,10 @@ t_liste_obs  creer_liste_obs(int nb_obs, int dimx, int dimy){
 	int i;
 	double vel, dir;
 	t_obstacle *obs;
-	liste.obstacles	= (t_obstacle *)malloc(sizeof(t_obstacle)*nb_obs);
+
+	liste.obstacles = (t_obstacle *)malloc(sizeof(t_obstacle)*nb_obs); /* Allocation dynamique */
+	assert(liste.obstacles); /* Vérification de l'allocation dynamique avec assert */
+
 	if (liste.obstacles == NULL){	/* Si l'allocation s'est bien déroulé */
 		liste.nombre = 0;
 	} else {

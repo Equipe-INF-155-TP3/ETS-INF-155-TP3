@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "donnees_route.h"
 #include <math.h>
+#include <assert.h>
+
+#include "donnees_route.h"
+
 
 
 #define LONG_MAX_NOM_F 15
@@ -17,34 +20,43 @@ int lire_fichier(char *nomF, t_route *route, t_pt2d *depart, double *dir_dep, t_
 	double dir_dep_deg;
 	
 
-	fichier = fopen(nomF, MODE_OUVERTURE);
+	fichier = fopen(nomF, MODE_OUVERTURE);  /* Vérification que le fichier a bien été ouvert */
 	if (fichier == NULL)
 		return 0;
 
+	/* LECTURE DONNEES POUR LA ROUTE */
+
 	fscanf(fichier, "%d %d\n", &(route->dimx), &(route->dimy));				/* Lecture première lignes pour les dimensions de route */
-	fscanf(fichier,"%d\n", &(route->nb_lignes));
+	fscanf(fichier, "%d\n", &(route->nb_lignes));							/* Lecture pour le nombre de lignes*/
 	(route->liste_lignes) = (t_ligne*)malloc((route->nb_lignes)*sizeof(t_ligne)); /* Allocation dynamique */
+	assert(route->liste_lignes);	/* Vérification de l'allocation dynamique */
 
-	for (i = 0; i < (route->nb_lignes); i++){
+	for (i = 0; i < (route->nb_lignes); i++){								 /* Lecture du fichier et remplissage des tableaux position*/
 
-		fscanf(fichier, "%lf %lf %lf %lf\n", &(route->liste_lignes[i].ptA.X), /* Lecture du fichier et remplir tableaux position*/
+		fscanf(fichier, "%lf %lf %lf %lf\n", &(route->liste_lignes[i].ptA.X), 
 											 &(route->liste_lignes[i].ptA.Y),
 											 &(route->liste_lignes[i].ptB.X),
 											 &(route->liste_lignes[i].ptB.Y));
 	}
 
-	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);
-	*dir_dep = dir_dep_deg*RAD_A_DEG; /* Conversion des radians en degrés */
+	fscanf(fichier, "%lf %lf %lf\n", &depart->X, &depart->Y, &dir_dep_deg);		/* Lecture pour la position de départ de la voiture */
+	*dir_dep = dir_dep_deg*RAD_A_DEG;		/* Conversion des radians en degrés */
+
+
+	/* LECTURE DONNEES POUR LE CHEMIN */
 
 	fscanf(fichier,"%d\n", &chemin->nb_pts);
 
-	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); 
+	(chemin->liste_pts) = (t_pt2d*)malloc((chemin->nb_pts)*sizeof(t_pt2d)); /* Allocation dynamique*/
+	assert(chemin->liste_pts);	/* Vérification de l'allocation dynamique avec assert */
 
 	for (i = 0; i < (chemin->nb_pts); i++)
 	{
 		fscanf(fichier, "%lf",   &chemin->liste_pts[i].X);
 		fscanf(fichier, "%lf\n", &chemin->liste_pts[i].Y);
 	}
+
+	/* LECTURE POUR NOMBRE D'OBSTACLE */
 
 	fscanf(fichier, "%d", nb_obs); 	/* On obtient le nombre d'obstacles */
 

@@ -4,12 +4,15 @@
  //************************# Fonction: detecter_obs #************************/
 //*************************##########################***********************/
 static int detecter_obs(const t_auto *navette){
+
 	int couleur;
 	double distance, angle;
 	t_pt2d point;
 	double test = DEMI_PI;
 	double max = navette->largeur/2+30;
+
 	for(distance = navette->largeur/2; distance <= max; distance += 15 ){
+
 		for(angle = -DEMI_CHP_VIS_VOIT; angle <= DEMI_CHP_VIS_VOIT ; angle += PAS_CHP_VIS_VOIT ){
 			point.X = navette->position.X+distance*cos(angle-navette->dir+DEMI_PI);
 			point.Y = navette->position.Y+distance*sin(angle-navette->dir+DEMI_PI);
@@ -17,7 +20,6 @@ static int detecter_obs(const t_auto *navette){
 
 
 			if ( couleur != AUTO && couleur != NOIR ){
-
 				return 1;
 			}
 		}
@@ -60,6 +62,7 @@ static void calcule_les_coins(t_auto *voiture){
  //***************************# Fonction: init_auto #************************/
 //****************************#######################***********************/
 t_auto init_auto(t_pt2d pos_depart, double dir_depart){
+
 	t_auto voiture; /* On crée la nouvelle voiture */
 
 	/* On la positionne comme indiqué */
@@ -142,7 +145,8 @@ void changer_acc_auto(t_auto *navette, t_pt2d dest){
  //*************************# Fonction: deplacer_auto #**********************/
 //**************************###########################*********************/
 void deplacer_auto(t_auto *navette){
-	double vitesse;//Serviras à stoker la vitesse.
+
+	double vitesse;//Servira à stocker la vitesse.
 
 	/* On accumule la vitesse avec l'accelereration */
 	navette->vel.X += navette->acc.X;
@@ -161,7 +165,7 @@ void deplacer_auto(t_auto *navette){
 
 	/*On recalcule la direction.
 	  La fonction atan2() corrige automatiquement les signes
-	  On ajoute PI pour compencer la direction décalé de la voiture */
+	  On ajoute PI pour compencer la direction décalée de la voiture */
 	navette->dir = atan2(-navette->vel.Y,navette->vel.X)+DEMI_PI;
 
 	/* On calcule les nouvelles positions des coins */

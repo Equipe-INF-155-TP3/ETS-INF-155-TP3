@@ -89,8 +89,8 @@
 #define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
 #define PREMIER_POINT 0
 
-#define CHOIX_POSSIBLES_NORMAL "DN\033"//'\033' est pour echap.
-#define CHOIX_POSSIBLES_ECHAP "Q"
+#define CHOIX_POSSIBLES_NORMAL "DN\033\000"//'\033' est pour echap.
+#define CHOIX_POSSIBLES_ECHAP "DQN"
 #define ECHAP '\033'
 
 
@@ -100,9 +100,12 @@
 static void choisir_menu( char *choix , const char *possible ){
 	char ch, i;
 	if ( saisie_touche(&ch) ){
+		printf("Nouvelle touche\n");
 		for(i=0;possible[i];i++){
-			if (possible[i] == ch)
+			printf("	test : %c\n",possible[i]);
+			if (possible[i] == ch){
 				*choix = ch;
+				printf("choix_menu : %c\n",*choix);}
 		}
 		printf("touche : %c\n",ch);
 	}
@@ -142,7 +145,7 @@ int main()
 	do{
 
 		/* Vérifier si une touche a été appuyée */
-		choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
+//		choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
 
 		switch (choix_menu) {
 			case 'N':
@@ -180,7 +183,7 @@ int main()
 				} else {
 
 					/*On indique à la boucle de s'arrêter.*/
-					choix_menu = 0;
+					choix_menu = 'Q';
 
 					/*fermer l'écrans graphique.*/
 					fermer_graphique();
@@ -192,6 +195,7 @@ int main()
 					  à appuiller sur une touche.*/
 					system("pause");
 				}
+
 
 			break;
 			case 'D':
@@ -209,7 +213,6 @@ int main()
 				/* Dessiner la voiture et obtenir les conditions initiales */
 				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 				dist_precedente = dist(pos_ref, cible);
-				
 
 				while (choix_menu == 'D'){
 
@@ -251,33 +254,36 @@ int main()
 					/* Vérifier si une touche a été appuyée */
 					choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
 
+
 				}/* Fin de la boucle de simulation */
 
 			break;
 
 			case ECHAP:
 				// Verifier si on appuis sur la touche 'Q'.
-				choisir_menu( &choix_menu, CHOIX_POSSIBLES_ECHAP );
+				do{
+					choisir_menu( &choix_menu, CHOIX_POSSIBLES_ECHAP );
+				}while (choix_menu == ECHAP);
 
 			break;
 
 			case 'Q':
 				// Fermer le graphique.
 				fermer_graphique();
-				//Indique à la boucle de s'arrêter.
-				choix_menu = 0;
+
+
+				if (chemin_charge){// Si le chemin à 
+					detruire_chemin(&route, &chemin);
+					chemin_charge = 0;
+				}
 			break;
 
 
 
 		}
 
-	} while(choix_menu);
+	} while(choix_menu != 'Q');
 
-	if (chemin_charge){// Si le chemin à 
-		detruire_chemin(&route, &chemin);
-		chemin_charge = 0;
-	}
 
 
 	return EXIT_SUCCESS;

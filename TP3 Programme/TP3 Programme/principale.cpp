@@ -84,19 +84,22 @@
 #include "t_obstacles.h"
 
 
+/* Taux de rafraichissement en millisecondes (ms) */
+#define RAFRAICHISSEMENT 50	
 
-
-#define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
+/* Le premier point du chemin où la voiture serat positionné */
 #define PREMIER_POINT 0
 
-#define CHOIX_POSSIBLES_NORMAL "DN\033\000"//'\033' est pour echap.
+/* Définir les choix_menu permis selon la situation. */
+#define CHOIX_POSSIBLES_NORMAL "DN\033"//'\033' est pour echap.
 #define CHOIX_POSSIBLES_ECHAP "DQN"
 #define ECHAP '\033'
-
 
   //**********************############################************************/
  //***********************#  Fonction: choisir_menu  #***********************/
 //************************############################**********************/
+/* Permet de détecter et discriminer l'appuis des touches en les comparant
+	avec une string recue en paramètre. */
 static void choisir_menu( char *choix , const char *possible ){
 	char ch, i;
 	if ( saisie_touche(&ch) ){
@@ -118,51 +121,50 @@ static void choisir_menu( char *choix , const char *possible ){
 int main()
 {
 
-
+	/* Déclarer les variables. */
 	t_route route;
 	t_chemin chemin;
 	t_auto voiture;
 	t_pt2d pos_ref, supG, supD, infG, infD;
 	t_liste_obs  obstacles;
 	int nb_obs, dimx, dimy;
-	int chemin_charge = 0;
 
+	/* Permet de savoir si un chemin à été chargé. */
+	int chemin_charge = 0; 
+
+	/* Conditions de départ. */
 	t_pt2d depart;
 	double dir_depart;
 
+	/* Variables d'objectif */
 	t_pt2d cible;
 	int prochain_point, nb_points;
 	double dist_precedente, distance;
 
+	/* Le choix_menu est initialisé à 'N' pour forcer 
+	   à choisir un fichier avant de commecer. */
 	char choix_menu = 'N', ch, *nomF;
-
 
 	initialiser_graphique();
 
-
-
-
+	//Début de la boucle principale.
 	do{
-
-		/* Vérifier si une touche a été appuyée */
-//		choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
-
 		switch (choix_menu) {
 			case 'N':
 
 				effacer_ecran();
+				/* Si le chemin à été chargé auparavant, on le détruit pour
+				   pouvoir en charger un autre. */
 				if (chemin_charge){
 					detruire_chemin(&route, &chemin);
-					chemin_charge = 0; /* Drapeau indiquant qu'un chemin est chargé.*/
+					chemin_charge = 0;
 				}
 
 				/* Saisir le nom de fichier */
 				nomF = saisie_nomF();
 
 				/*On nétoye l'écrans.*/
-				effacer_ecran();
-				
-				
+				effacer_ecran();	
 
 				if (lire_fichier(nomF, &route, &depart, &dir_depart, &chemin, &nb_obs))
 				{
@@ -195,8 +197,6 @@ int main()
 					  à appuiller sur une touche.*/
 					system("pause");
 				}
-
-
 			break;
 			case 'D':
 
@@ -212,6 +212,9 @@ int main()
 				/* Dessiner la voiture et obtenir les conditions initiales */
 				obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 				dist_precedente = dist(pos_ref, cible);
+
+				/* Dessiner le menu */
+				afficher_menu(dimy);
 
 				while (choix_menu == 'D'){
 
@@ -240,11 +243,7 @@ int main()
 					effacer_route(dimx, dimy);
 					dessiner_auto( pos_ref, supG, supD, infG, infD, AUTO );
 					dessiner_route(&route);
-
-					/* dessiner_chemin(&chemin) */
 					afficher_obs(&obstacles);
-
-					afficher_menu(dimy);
 
 					/* Pause pour limiter la vitesse d'éxécution */
 					delai(RAFRAICHISSEMENT);
@@ -252,9 +251,7 @@ int main()
 					/* Vérifier si une touche a été appuyée */
 					choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
 
-
 				}/* Fin de la boucle de simulation */
-
 			break;
 
 			case ECHAP:
@@ -262,15 +259,14 @@ int main()
 				do{
 					choisir_menu( &choix_menu, CHOIX_POSSIBLES_ECHAP );
 				}while (choix_menu == ECHAP);
-
 			break;
 
 			case 'Q':
-				// Fermer le graphique.
+				// Fermer le mode graphique.
 				fermer_graphique();
 
-
-				if (chemin_charge){// Si le chemin à 
+				/* Si le chemin à été chargé auparavant, on le détruit. */
+				if (chemin_charge){
 					detruire_chemin(&route, &chemin);
 					chemin_charge = 0;
 				}
@@ -281,6 +277,7 @@ int main()
 		}
 
 	} while(choix_menu != 'Q');
+	//Fin de la boucle principale.
 
 
 

@@ -319,7 +319,8 @@ char * saisie_nomF()
 int saisie_touche(char *ch)
 { 
   if (kbhit()) {            /* Si on a détecté une touche-clavier... */
-    *ch = toupper(getch());   /* La touche sera retournée en MAJUSCULES */
+    *ch = toupper(getch());/* La touche sera retournée en MAJUSCULES */
+	printf("Touche Reelle %c\n", *ch);
 	return 1;
   }
 

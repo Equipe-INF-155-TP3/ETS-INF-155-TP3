@@ -89,18 +89,19 @@
 #define RAFRAICHISSEMENT 50	/* Taux de rafraichissement en millisecondes (ms) */
 #define PREMIER_POINT 0
 
-#define CHOIX_POSSIBLES "DN\033"//'\033' est pour echap.
+#define CHOIX_POSSIBLES_NORMAL "DN\033"//'\033' est pour echap.
+#define CHOIX_POSSIBLES_ECHAP "Q"
 #define ECHAP '\033'
 
 
   //**********************############################************************/
  //***********************#  Fonction: choisir_menu  #***********************/
 //************************############################**********************/
-static void choisir_menu( char *choix ){
+static void choisir_menu( char *choix , const char *possible ){
 	char ch, i;
 	if ( saisie_touche(&ch) ){
-		for(i=0;CHOIX_POSSIBLES[i];i++){
-			if (CHOIX_POSSIBLES[i] == ch)
+		for(i=0;possible[i];i++){
+			if (possible[i] == ch)
 				*choix = ch;
 		}
 		printf("touche : %c\n",ch);
@@ -141,7 +142,7 @@ int main()
 	do{
 
 		/* Vérifier si une touche a été appuyée */
-		choisir_menu(&choix_menu);
+		choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
 
 		switch (choix_menu) {
 			case 'N':
@@ -155,7 +156,7 @@ int main()
 				/* Saisir le nom de fichier */
 				nomF = saisie_nomF();
 
-
+				/*On nétoye l'écrans.*/
 				effacer_ecran();
 				
 				
@@ -166,19 +167,29 @@ int main()
 					obt_dim_route(&route, &dimx, &dimy);
 					nb_points = obt_nb_pts(&chemin);
 
-					/* Créer la voiture et les obstacles */
+					/* Dessiner la voiture et les obstacles */
 					dessiner_route(&route);
 					dessiner_chemin(&chemin);
 					afficher_menu(dimy);
 
+					/*On indique qu'un chemin à été chargé.
 					chemin_charge = 1;
 
 					/* On réactive la boucle */
 					choix_menu = ECHAP;
 				} else {
-					printf("Impossible d'ouvrir le fichier \"%s\"\n", nomF);
-					choix_menu = 'Q';
+
+					/*On indique à la boucle de s'arrêter.*/
+					choix_menu = 0;
+
+					/*fermer l'écrans graphique.*/
 					fermer_graphique();
+
+					/*On indique à l'opérateur que le fichier est introuvable.*/
+					printf("Impossible d'ouvrir le fichier \"%s\"\n", nomF);
+
+					/*Permetre à l'opérateur de lire le message en l'invitant
+					  à appuiller sur une touche.*/
 					system("pause");
 				}
 
@@ -202,11 +213,12 @@ int main()
 
 				while (choix_menu == 'D'){
 
-					/* Calcul du comportement de la voiture */
+					/* Calcul du comportement de la voiture. */
 					changer_acc_auto(&voiture, cible);
 					deplacer_auto(&voiture);
 					obt_pos_auto(&voiture, &pos_ref, &supG, &supD, &infG, &infD);
 
+					/* Détection de la proximité de la cible. */
 					distance = dist(pos_ref, cible);
 					if (2*distance < LARG && distance > dist_precedente )
 						if (prochain_point < nb_points-1){
@@ -237,25 +249,32 @@ int main()
 					delai(RAFRAICHISSEMENT);
 
 					/* Vérifier si une touche a été appuyée */
-					choisir_menu(&choix_menu);
+					choisir_menu(&choix_menu, CHOIX_POSSIBLES_NORMAL);
 
 				}/* Fin de la boucle de simulation */
 
 			break;
 
 			case ECHAP:
+				// Verifier si on appuis sur la touche 'Q'.
+				choisir_menu( &choix_menu, CHOIX_POSSIBLES_ECHAP );
 
-				saisie_touche(&ch);
-				if (ch == 'Q'){
-					choix_menu = 'Q';
-					fermer_graphique();
-				}
 			break;
+
+			case 'Q':
+				// Fermer le graphique.
+				fermer_graphique();
+				//Indique à la boucle de s'arrêter.
+				choix_menu = 0;
+			break;
+
+
+
 		}
 
-	} while(choix_menu!='Q');
+	} while(choix_menu);
 
-	if (chemin_charge){
+	if (chemin_charge){// Si le chemin à 
 		detruire_chemin(&route, &chemin);
 		chemin_charge = 0;
 	}
